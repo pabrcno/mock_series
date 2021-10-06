@@ -1,35 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
-class ClosedSearchBar extends StatelessWidget {
-  const ClosedSearchBar({
-    Key? key,
-    required this.openContainer,
-  }) : super(key: key);
-  final VoidCallback openContainer;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: openContainer,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        height: 60,
-        width: MediaQuery.of(context).size.width,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text("Search a show", style: TextStyle(fontSize: 20)),
-            Icon(
-              Icons.search,
-              size: 28,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);
 
@@ -66,6 +37,35 @@ class SearchBar extends StatelessWidget {
   }
 }
 
+class ClosedSearchBar extends StatelessWidget {
+  const ClosedSearchBar({
+    Key? key,
+    required this.openContainer,
+  }) : super(key: key);
+  final VoidCallback openContainer;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: openContainer,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        height: 60,
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text("Search a show", style: TextStyle(fontSize: 20)),
+            Icon(
+              Icons.search,
+              size: 28,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class OpenSearchBar extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const OpenSearchBar({
@@ -81,7 +81,7 @@ class OpenSearchBar extends StatelessWidget {
     return OpenContainer<bool>(
       transitionDuration: const Duration(milliseconds: 400),
       closedColor: Theme.of(context).primaryColor,
-      openColor: Theme.of(context).backgroundColor,
+      openColor: Theme.of(context).primaryColor,
       transitionType: transitionType,
       openBuilder: (BuildContext context, VoidCallback _) {
         return const SearchBar();
