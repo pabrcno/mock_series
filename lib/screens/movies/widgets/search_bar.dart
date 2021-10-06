@@ -69,8 +69,9 @@ class OpenSearchBar extends StatelessWidget {
     return OpenContainer<bool>(
       transitionDuration: const Duration(milliseconds: 800),
       closedShape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+          borderRadius: BorderRadius.all(
+        Radius.circular(10),
+      )),
       transitionType: transitionType,
       openBuilder: (BuildContext context, VoidCallback _) {
         return const SearchBar();

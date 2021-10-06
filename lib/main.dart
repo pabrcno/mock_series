@@ -30,23 +30,26 @@ class MyHomePage extends StatelessWidget {
         title: Text("MOVIES"),
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
-          children: <Widget>[
-            Center(child: Text("MOVIES")),
-            Positioned(
-              bottom: 0,
-              child: OpenSearchBar(
-                transitionType: ContainerTransitionType.fade,
-                closedBuilder: (BuildContext _, VoidCallback openContainer) {
-                  return ClosedSearchBar(openContainer: openContainer);
-                },
-              ),
-            )
-          ],
-        ),
-      ),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Stack(
+              children: <Widget>[
+                Center(child: Text("MOVIES")),
+                Positioned(
+                  bottom: 20,
+                  child: OpenSearchBar(
+                    transitionType: ContainerTransitionType.fade,
+                    closedBuilder:
+                        (BuildContext _, VoidCallback openContainer) {
+                      return ClosedSearchBar(openContainer: openContainer);
+                    },
+                  ),
+                )
+              ],
+            ),
+          )),
     );
   }
 }
