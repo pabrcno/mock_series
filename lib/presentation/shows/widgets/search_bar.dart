@@ -42,7 +42,7 @@ class SearchBar extends StatelessWidget {
             TextFormField(
                 autofocus: true,
                 decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.search, color: Colors.white),
+                  suffixIcon: const Icon(Icons.search, color: Colors.white),
                   labelText: 'Search a show',
                   labelStyle: TextStyle(color: Theme.of(context).primaryColor),
                 )),
