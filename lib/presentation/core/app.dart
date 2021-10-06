@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         inputDecorationTheme: const InputDecorationTheme(
             floatingLabelStyle: TextStyle(color: Colors.white, fontSize: 20),
-            border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white)),
+            border:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
             focusedBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
             errorMaxLines: 1,
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Colors.white,
         ),
-        primaryColor: const Color.fromRGBO(138, 90, 171, 1),
+        primaryColor: Colors.indigo[600],
         backgroundColor: const Color.fromRGBO(43, 44, 67, 1),
       ),
       home: const MainShowsScreen(),
