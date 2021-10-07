@@ -9,6 +9,6 @@ class ShowsController extends GetxController {
   ShowsController(this._showsService);
 
   getMainScreenShowsList() async {
-    await _showsService.getShowsPage(page: showPageIndex.value);
+    print(await _showsService.getShowsPage(page: showPageIndex.value));
   }
 }

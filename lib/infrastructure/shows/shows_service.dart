@@ -16,11 +16,15 @@ class ShowsService implements IShowsServiceFacade {
     String pageUri = 'https://api.tvmaze.com/shows?page=$page';
     try {
       var response = await dio.get(pageUri);
-      print(response);
+
+      List<Show> showsList = [];
+
+      response.data.forEach((json) => showsList.add(Show.fromJson(json)));
+      return right(showsList);
     } on DioError catch (e) {
-      print(e.type);
+      print(e);
+      return left(const ShowServiceFailure.serverError());
     }
-    throw UnimplementedError();
   }
 
   @override

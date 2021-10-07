@@ -13,6 +13,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Show _$ShowFromJson(Map<String, dynamic> json) {
+  return _Show.fromJson(json);
+}
+
 /// @nodoc
 class _$ShowTearOff {
   const _$ShowTearOff();
@@ -23,10 +27,10 @@ class _$ShowTearOff {
       required String name,
       required String language,
       required List<String> genres,
-      required String premiered,
-      required ShowSchedule showSchedule,
+      String? premiered,
+      required ShowSchedule schedule,
       required String summary,
-      required Map<String, String> images}) {
+      required Map<String, String> image}) {
     return _Show(
       id: id,
       url: url,
@@ -34,10 +38,14 @@ class _$ShowTearOff {
       language: language,
       genres: genres,
       premiered: premiered,
-      showSchedule: showSchedule,
+      schedule: schedule,
       summary: summary,
-      images: images,
+      image: image,
     );
+  }
+
+  Show fromJson(Map<String, Object> json) {
+    return Show.fromJson(json);
   }
 }
 
@@ -51,12 +59,12 @@ mixin _$Show {
   String get name => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
   List<String> get genres => throw _privateConstructorUsedError;
-  String get premiered => throw _privateConstructorUsedError;
-  ShowSchedule get showSchedule =>
-      throw _privateConstructorUsedError; //HTML format
+  String? get premiered => throw _privateConstructorUsedError;
+  ShowSchedule get schedule => throw _privateConstructorUsedError; //HTML format
   String get summary => throw _privateConstructorUsedError;
-  Map<String, String> get images => throw _privateConstructorUsedError;
+  Map<String, String> get image => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ShowCopyWith<Show> get copyWith => throw _privateConstructorUsedError;
 }
@@ -71,12 +79,12 @@ abstract class $ShowCopyWith<$Res> {
       String name,
       String language,
       List<String> genres,
-      String premiered,
-      ShowSchedule showSchedule,
+      String? premiered,
+      ShowSchedule schedule,
       String summary,
-      Map<String, String> images});
+      Map<String, String> image});
 
-  $ShowScheduleCopyWith<$Res> get showSchedule;
+  $ShowScheduleCopyWith<$Res> get schedule;
 }
 
 /// @nodoc
@@ -95,9 +103,9 @@ class _$ShowCopyWithImpl<$Res> implements $ShowCopyWith<$Res> {
     Object? language = freezed,
     Object? genres = freezed,
     Object? premiered = freezed,
-    Object? showSchedule = freezed,
+    Object? schedule = freezed,
     Object? summary = freezed,
-    Object? images = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -123,26 +131,26 @@ class _$ShowCopyWithImpl<$Res> implements $ShowCopyWith<$Res> {
       premiered: premiered == freezed
           ? _value.premiered
           : premiered // ignore: cast_nullable_to_non_nullable
-              as String,
-      showSchedule: showSchedule == freezed
-          ? _value.showSchedule
-          : showSchedule // ignore: cast_nullable_to_non_nullable
+              as String?,
+      schedule: schedule == freezed
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
               as ShowSchedule,
       summary: summary == freezed
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
     ));
   }
 
   @override
-  $ShowScheduleCopyWith<$Res> get showSchedule {
-    return $ShowScheduleCopyWith<$Res>(_value.showSchedule, (value) {
-      return _then(_value.copyWith(showSchedule: value));
+  $ShowScheduleCopyWith<$Res> get schedule {
+    return $ShowScheduleCopyWith<$Res>(_value.schedule, (value) {
+      return _then(_value.copyWith(schedule: value));
     });
   }
 }
@@ -158,13 +166,13 @@ abstract class _$ShowCopyWith<$Res> implements $ShowCopyWith<$Res> {
       String name,
       String language,
       List<String> genres,
-      String premiered,
-      ShowSchedule showSchedule,
+      String? premiered,
+      ShowSchedule schedule,
       String summary,
-      Map<String, String> images});
+      Map<String, String> image});
 
   @override
-  $ShowScheduleCopyWith<$Res> get showSchedule;
+  $ShowScheduleCopyWith<$Res> get schedule;
 }
 
 /// @nodoc
@@ -184,9 +192,9 @@ class __$ShowCopyWithImpl<$Res> extends _$ShowCopyWithImpl<$Res>
     Object? language = freezed,
     Object? genres = freezed,
     Object? premiered = freezed,
-    Object? showSchedule = freezed,
+    Object? schedule = freezed,
     Object? summary = freezed,
-    Object? images = freezed,
+    Object? image = freezed,
   }) {
     return _then(_Show(
       id: id == freezed
@@ -212,25 +220,25 @@ class __$ShowCopyWithImpl<$Res> extends _$ShowCopyWithImpl<$Res>
       premiered: premiered == freezed
           ? _value.premiered
           : premiered // ignore: cast_nullable_to_non_nullable
-              as String,
-      showSchedule: showSchedule == freezed
-          ? _value.showSchedule
-          : showSchedule // ignore: cast_nullable_to_non_nullable
+              as String?,
+      schedule: schedule == freezed
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
               as ShowSchedule,
       summary: summary == freezed
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Show implements _Show {
   const _$_Show(
       {required this.id,
@@ -238,10 +246,12 @@ class _$_Show implements _Show {
       required this.name,
       required this.language,
       required this.genres,
-      required this.premiered,
-      required this.showSchedule,
+      this.premiered,
+      required this.schedule,
       required this.summary,
-      required this.images});
+      required this.image});
+
+  factory _$_Show.fromJson(Map<String, dynamic> json) => _$$_ShowFromJson(json);
 
   @override
   final int id;
@@ -254,17 +264,17 @@ class _$_Show implements _Show {
   @override
   final List<String> genres;
   @override
-  final String premiered;
+  final String? premiered;
   @override
-  final ShowSchedule showSchedule;
+  final ShowSchedule schedule;
   @override //HTML format
   final String summary;
   @override
-  final Map<String, String> images;
+  final Map<String, String> image;
 
   @override
   String toString() {
-    return 'Show(id: $id, url: $url, name: $name, language: $language, genres: $genres, premiered: $premiered, showSchedule: $showSchedule, summary: $summary, images: $images)';
+    return 'Show(id: $id, url: $url, name: $name, language: $language, genres: $genres, premiered: $premiered, schedule: $schedule, summary: $summary, image: $image)';
   }
 
   @override
@@ -285,14 +295,14 @@ class _$_Show implements _Show {
             (identical(other.premiered, premiered) ||
                 const DeepCollectionEquality()
                     .equals(other.premiered, premiered)) &&
-            (identical(other.showSchedule, showSchedule) ||
+            (identical(other.schedule, schedule) ||
                 const DeepCollectionEquality()
-                    .equals(other.showSchedule, showSchedule)) &&
+                    .equals(other.schedule, schedule)) &&
             (identical(other.summary, summary) ||
                 const DeepCollectionEquality()
                     .equals(other.summary, summary)) &&
-            (identical(other.images, images) ||
-                const DeepCollectionEquality().equals(other.images, images)));
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)));
   }
 
   @override
@@ -304,14 +314,19 @@ class _$_Show implements _Show {
       const DeepCollectionEquality().hash(language) ^
       const DeepCollectionEquality().hash(genres) ^
       const DeepCollectionEquality().hash(premiered) ^
-      const DeepCollectionEquality().hash(showSchedule) ^
+      const DeepCollectionEquality().hash(schedule) ^
       const DeepCollectionEquality().hash(summary) ^
-      const DeepCollectionEquality().hash(images);
+      const DeepCollectionEquality().hash(image);
 
   @JsonKey(ignore: true)
   @override
   _$ShowCopyWith<_Show> get copyWith =>
       __$ShowCopyWithImpl<_Show>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ShowToJson(this);
+  }
 }
 
 abstract class _Show implements Show {
@@ -321,10 +336,12 @@ abstract class _Show implements Show {
       required String name,
       required String language,
       required List<String> genres,
-      required String premiered,
-      required ShowSchedule showSchedule,
+      String? premiered,
+      required ShowSchedule schedule,
       required String summary,
-      required Map<String, String> images}) = _$_Show;
+      required Map<String, String> image}) = _$_Show;
+
+  factory _Show.fromJson(Map<String, dynamic> json) = _$_Show.fromJson;
 
   @override
   int get id => throw _privateConstructorUsedError;
@@ -337,13 +354,13 @@ abstract class _Show implements Show {
   @override
   List<String> get genres => throw _privateConstructorUsedError;
   @override
-  String get premiered => throw _privateConstructorUsedError;
+  String? get premiered => throw _privateConstructorUsedError;
   @override
-  ShowSchedule get showSchedule => throw _privateConstructorUsedError;
+  ShowSchedule get schedule => throw _privateConstructorUsedError;
   @override //HTML format
   String get summary => throw _privateConstructorUsedError;
   @override
-  Map<String, String> get images => throw _privateConstructorUsedError;
+  Map<String, String> get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ShowCopyWith<_Show> get copyWith => throw _privateConstructorUsedError;

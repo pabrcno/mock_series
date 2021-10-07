@@ -13,9 +13,14 @@ abstract class Show with _$Show {
       required String name,
       required String language,
       required List<String> genres,
-      required String premiered,
-      required ShowSchedule showSchedule,
+      String? premiered,
+      required ShowSchedule schedule,
       //HTML format
       required String summary,
-      required Map<String, String> images}) = _Show;
+      required Map<String, String> image}) = _Show;
+
+  @override
+  factory Show.fromJson(Map<String, dynamic> json) => _$ShowFromJson(json);
+  @override
+  Map<String, dynamic> toJson() => _$ShowToJson(this);
 }
