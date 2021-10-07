@@ -1,11 +1,16 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mock_series/application/shows_controller/shows_controller.dart';
+import '../../injection.dart';
 import 'widgets/search_bar.dart';
 
 class MainShowsScreen extends StatelessWidget {
   const MainShowsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    ShowsController showController = Get.put(getIt<ShowsController>());
+    showController.getMainScreenShowsList();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
