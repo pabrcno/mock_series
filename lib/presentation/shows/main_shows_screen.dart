@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
+import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 import '../../injection.dart';
 import 'widgets/search_bar.dart';
 
@@ -12,7 +13,8 @@ class MainShowsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ShowsController showsController = Get.put(getIt<ShowsController>());
 
-    showsController.getMainScreenShowsList(showShowsSnackBar);
+    showsController.initializeShowLists(showShowsSnackBar);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -27,21 +29,28 @@ class MainShowsScreen extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Obx(() {
-                  ScrollController _controller = ScrollController();
-                  _controller.addListener(() {
-                    int reloadMargin = -150;
-                    if (_controller.position.pixels >=
-                        _controller.position.maxScrollExtent + reloadMargin) {
-                      showsController.addToPageIndex();
-                      showsController.getMainScreenShowsList(showShowsSnackBar);
+                  ScrollController _scrollController = ScrollController();
+                  _scrollController.addListener(() {
+                    int reloadMargin = -20;
+                    if (_scrollController.position.pixels >=
+                        _scrollController.position.maxScrollExtent +
+                            reloadMargin) {
+                      if (showsController.memoryIndex.value >=
+                          showsController.memoryShowList.length) {
+                        showsController.addToPageIndex();
+                        showsController
+                            .getMainScreenShowsList(showShowsSnackBar);
+                      }
+                      showsController.setToLoadShowList();
+                      print(showsController.toLoadShowList);
                     }
                   });
                   return Center(
                     child: SingleChildScrollView(
-                        controller: _controller,
+                        controller: _scrollController,
                         child: Column(children: [
-                          ...showsController.mainShowList
-                              .map((element) => Text(element.name!))
+                          ...showsController.toLoadShowList
+                              .map((show) => ShowPresentation(show: show))
                               .toList(),
                           showsController.isShowpageLoading.value
                               ? const Center(

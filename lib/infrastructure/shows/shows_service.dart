@@ -26,6 +26,13 @@ class ShowsService implements IShowsServiceFacade {
   }
 
   @override
+  Future<Either<ShowServiceFailure, List<Show>>> getShowsSearch(
+      {required String search}) {
+    // TODO: implement getShowsSearch
+    throw UnimplementedError();
+  }
+
+  @override
   Future<Either<ShowServiceFailure, Show>> getShow({required int id}) {
     // TODO: implement getShow
     throw UnimplementedError();
@@ -42,13 +49,6 @@ class ShowsService implements IShowsServiceFacade {
   Future<Either<ShowServiceFailure, List<Season>>> getShowSeasons(
       {required int showId}) {
     // TODO: implement getShowSeasons
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<ShowServiceFailure, List<Show>>> getShowsSearch(
-      {required String search}) {
-    // TODO: implement getShowsSearch
     throw UnimplementedError();
   }
 
