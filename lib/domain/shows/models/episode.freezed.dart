@@ -13,18 +13,22 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Episode _$EpisodeFromJson(Map<String, dynamic> json) {
+  return _Episode.fromJson(json);
+}
+
 /// @nodoc
 class _$EpisodeTearOff {
   const _$EpisodeTearOff();
 
   _Episode call(
-      {required int id,
-      required String url,
-      required String name,
-      required int season,
-      required int number,
-      required String summary,
-      required Map<String, String> images}) {
+      {required int? id,
+      required String? url,
+      required String? name,
+      required int? season,
+      required int? number,
+      required String? summary,
+      required Map<String, String>? images}) {
     return _Episode(
       id: id,
       url: url,
@@ -35,6 +39,10 @@ class _$EpisodeTearOff {
       images: images,
     );
   }
+
+  Episode fromJson(Map<String, Object> json) {
+    return Episode.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -42,14 +50,15 @@ const $Episode = _$EpisodeTearOff();
 
 /// @nodoc
 mixin _$Episode {
-  int get id => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  int get season => throw _privateConstructorUsedError;
-  int get number => throw _privateConstructorUsedError; //HTML format
-  String get summary => throw _privateConstructorUsedError;
-  Map<String, String> get images => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  int? get season => throw _privateConstructorUsedError;
+  int? get number => throw _privateConstructorUsedError; //HTML format
+  String? get summary => throw _privateConstructorUsedError;
+  Map<String, String>? get images => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EpisodeCopyWith<Episode> get copyWith => throw _privateConstructorUsedError;
 }
@@ -59,13 +68,13 @@ abstract class $EpisodeCopyWith<$Res> {
   factory $EpisodeCopyWith(Episode value, $Res Function(Episode) then) =
       _$EpisodeCopyWithImpl<$Res>;
   $Res call(
-      {int id,
-      String url,
-      String name,
-      int season,
-      int number,
-      String summary,
-      Map<String, String> images});
+      {int? id,
+      String? url,
+      String? name,
+      int? season,
+      int? number,
+      String? summary,
+      Map<String, String>? images});
 }
 
 /// @nodoc
@@ -90,31 +99,31 @@ class _$EpisodeCopyWithImpl<$Res> implements $EpisodeCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       season: season == freezed
           ? _value.season
           : season // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       number: number == freezed
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       summary: summary == freezed
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, String>?,
     ));
   }
 }
@@ -125,13 +134,13 @@ abstract class _$EpisodeCopyWith<$Res> implements $EpisodeCopyWith<$Res> {
       __$EpisodeCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
-      String url,
-      String name,
-      int season,
-      int number,
-      String summary,
-      Map<String, String> images});
+      {int? id,
+      String? url,
+      String? name,
+      int? season,
+      int? number,
+      String? summary,
+      Map<String, String>? images});
 }
 
 /// @nodoc
@@ -157,37 +166,37 @@ class __$EpisodeCopyWithImpl<$Res> extends _$EpisodeCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       season: season == freezed
           ? _value.season
           : season // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       number: number == freezed
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       summary: summary == freezed
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, String>?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Episode implements _Episode {
   const _$_Episode(
       {required this.id,
@@ -198,20 +207,23 @@ class _$_Episode implements _Episode {
       required this.summary,
       required this.images});
 
+  factory _$_Episode.fromJson(Map<String, dynamic> json) =>
+      _$$_EpisodeFromJson(json);
+
   @override
-  final int id;
+  final int? id;
   @override
-  final String url;
+  final String? url;
   @override
-  final String name;
+  final String? name;
   @override
-  final int season;
+  final int? season;
   @override
-  final int number;
+  final int? number;
   @override //HTML format
-  final String summary;
+  final String? summary;
   @override
-  final Map<String, String> images;
+  final Map<String, String>? images;
 
   @override
   String toString() {
@@ -254,32 +266,39 @@ class _$_Episode implements _Episode {
   @override
   _$EpisodeCopyWith<_Episode> get copyWith =>
       __$EpisodeCopyWithImpl<_Episode>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EpisodeToJson(this);
+  }
 }
 
 abstract class _Episode implements Episode {
   const factory _Episode(
-      {required int id,
-      required String url,
-      required String name,
-      required int season,
-      required int number,
-      required String summary,
-      required Map<String, String> images}) = _$_Episode;
+      {required int? id,
+      required String? url,
+      required String? name,
+      required int? season,
+      required int? number,
+      required String? summary,
+      required Map<String, String>? images}) = _$_Episode;
+
+  factory _Episode.fromJson(Map<String, dynamic> json) = _$_Episode.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
-  String get url => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  int get season => throw _privateConstructorUsedError;
+  int? get season => throw _privateConstructorUsedError;
   @override
-  int get number => throw _privateConstructorUsedError;
+  int? get number => throw _privateConstructorUsedError;
   @override //HTML format
-  String get summary => throw _privateConstructorUsedError;
+  String? get summary => throw _privateConstructorUsedError;
   @override
-  Map<String, String> get images => throw _privateConstructorUsedError;
+  Map<String, String>? get images => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$EpisodeCopyWith<_Episode> get copyWith =>

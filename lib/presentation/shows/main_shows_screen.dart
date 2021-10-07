@@ -27,21 +27,32 @@ class MainShowsScreen extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Obx(() {
-                  return showsController.mainShowList.isNotEmpty
-                      ? SingleChildScrollView(
-                          child: Column(
-                          children: showsController.mainShowList
-                              .map((element) => Text(element.name))
+                  ScrollController _controller = ScrollController();
+                  _controller.addListener(() {
+                    int reloadMargin = -150;
+                    if (_controller.position.pixels >=
+                        _controller.position.maxScrollExtent + reloadMargin) {
+                      showsController.addToPageIndex();
+                      showsController.getMainScreenShowsList(showShowsSnackBar);
+                    }
+                  });
+                  return Center(
+                    child: SingleChildScrollView(
+                        controller: _controller,
+                        child: Column(children: [
+                          ...showsController.mainShowList
+                              .map((element) => Text(element.name!))
                               .toList(),
-                        ))
-                      : const CircularProgressIndicator();
+                          showsController.isShowpageLoading.value
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : const SizedBox(
+                                  height: 1,
+                                )
+                        ])),
+                  );
                 }),
-                SingleChildScrollView(
-                    child: Column(
-                  children: showsController.mainShowList
-                      .map((element) => Text(element.name))
-                      .toList(),
-                )),
                 Positioned(
                   bottom: 10,
                   child: OpenSearchBar(

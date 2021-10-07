@@ -8,15 +8,19 @@ part of 'show.dart';
 
 // Show _$ShowFromJson(Map<String, dynamic> json) => Show(
 //       id: json['id'] as int,
-//       url: json['url'] as String,
-//       name: json['name'] as String,
-//       language: json['language'] as String,
+//       url: json['url'] as String?,
+//       name: json['name'] as String?,
+//       language: json['language'] as String?,
 //       genres:
-//           (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
+//           (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
 //       premiered: json['premiered'] as String?,
-//       schedule: ShowSchedule.fromJson(json['schedule'] as Map<String, dynamic>),
-//       summary: json['summary'] as String,
-//       image: Map<String, String>.from(json['image'] as Map),
+//       schedule: json['schedule'] == null
+//           ? null
+//           : ShowSchedule.fromJson(json['schedule'] as Map<String, dynamic>),
+//       summary: json['summary'] as String?,
+//       image: (json['image'] as Map<String, dynamic>?)?.map(
+//         (k, e) => MapEntry(k, e as String),
+//       ),
 //     );
 
 Map<String, dynamic> _$ShowToJson(Show instance) => <String, dynamic>{
@@ -33,15 +37,19 @@ Map<String, dynamic> _$ShowToJson(Show instance) => <String, dynamic>{
 
 _$_Show _$$_ShowFromJson(Map<String, dynamic> json) => _$_Show(
       id: json['id'] as int,
-      url: json['url'] as String,
-      name: json['name'] as String,
-      language: json['language'] as String,
+      url: json['url'] as String?,
+      name: json['name'] as String?,
+      language: json['language'] as String?,
       genres:
-          (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
+          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
       premiered: json['premiered'] as String?,
-      schedule: ShowSchedule.fromJson(json['schedule'] as Map<String, dynamic>),
-      summary: json['summary'] as String,
-      image: Map<String, String>.from(json['image'] as Map),
+      schedule: json['schedule'] == null
+          ? null
+          : ShowSchedule.fromJson(json['schedule'] as Map<String, dynamic>),
+      summary: json['summary'] as String?,
+      image: (json['image'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
     );
 
 Map<String, dynamic> _$$_ShowToJson(_$_Show instance) => <String, dynamic>{

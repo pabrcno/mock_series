@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mock_series/domain/shows/i_shows_service_facade.dart';
+import 'package:mock_series/domain/shows/models/season.dart';
 import 'package:mock_series/domain/shows/show_service_failure.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/domain/shows/models/episode.dart';
@@ -38,7 +39,7 @@ class ShowsService implements IShowsServiceFacade {
   }
 
   @override
-  Future<Either<ShowServiceFailure, List<Episode>>> getShowSeasons(
+  Future<Either<ShowServiceFailure, List<Season>>> getShowSeasons(
       {required int showId}) {
     // TODO: implement getShowSeasons
     throw UnimplementedError();

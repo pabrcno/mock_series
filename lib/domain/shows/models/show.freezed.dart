@@ -23,14 +23,14 @@ class _$ShowTearOff {
 
   _Show call(
       {required int id,
-      required String url,
-      required String name,
-      required String language,
-      required List<String> genres,
+      required String? url,
+      required String? name,
+      required String? language,
+      required List<String>? genres,
       String? premiered,
-      required ShowSchedule schedule,
-      required String summary,
-      required Map<String, String> image}) {
+      required ShowSchedule? schedule,
+      required String? summary,
+      required Map<String, String>? image}) {
     return _Show(
       id: id,
       url: url,
@@ -55,14 +55,15 @@ const $Show = _$ShowTearOff();
 /// @nodoc
 mixin _$Show {
   int get id => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get language => throw _privateConstructorUsedError;
-  List<String> get genres => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  List<String>? get genres => throw _privateConstructorUsedError;
   String? get premiered => throw _privateConstructorUsedError;
-  ShowSchedule get schedule => throw _privateConstructorUsedError; //HTML format
-  String get summary => throw _privateConstructorUsedError;
-  Map<String, String> get image => throw _privateConstructorUsedError;
+  ShowSchedule? get schedule =>
+      throw _privateConstructorUsedError; //HTML format
+  String? get summary => throw _privateConstructorUsedError;
+  Map<String, String>? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,16 +76,16 @@ abstract class $ShowCopyWith<$Res> {
       _$ShowCopyWithImpl<$Res>;
   $Res call(
       {int id,
-      String url,
-      String name,
-      String language,
-      List<String> genres,
+      String? url,
+      String? name,
+      String? language,
+      List<String>? genres,
       String? premiered,
-      ShowSchedule schedule,
-      String summary,
-      Map<String, String> image});
+      ShowSchedule? schedule,
+      String? summary,
+      Map<String, String>? image});
 
-  $ShowScheduleCopyWith<$Res> get schedule;
+  $ShowScheduleCopyWith<$Res>? get schedule;
 }
 
 /// @nodoc
@@ -115,19 +116,19 @@ class _$ShowCopyWithImpl<$Res> implements $ShowCopyWith<$Res> {
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genres: genres == freezed
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       premiered: premiered == freezed
           ? _value.premiered
           : premiered // ignore: cast_nullable_to_non_nullable
@@ -135,21 +136,25 @@ class _$ShowCopyWithImpl<$Res> implements $ShowCopyWith<$Res> {
       schedule: schedule == freezed
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
-              as ShowSchedule,
+              as ShowSchedule?,
       summary: summary == freezed
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, String>?,
     ));
   }
 
   @override
-  $ShowScheduleCopyWith<$Res> get schedule {
-    return $ShowScheduleCopyWith<$Res>(_value.schedule, (value) {
+  $ShowScheduleCopyWith<$Res>? get schedule {
+    if (_value.schedule == null) {
+      return null;
+    }
+
+    return $ShowScheduleCopyWith<$Res>(_value.schedule!, (value) {
       return _then(_value.copyWith(schedule: value));
     });
   }
@@ -162,17 +167,17 @@ abstract class _$ShowCopyWith<$Res> implements $ShowCopyWith<$Res> {
   @override
   $Res call(
       {int id,
-      String url,
-      String name,
-      String language,
-      List<String> genres,
+      String? url,
+      String? name,
+      String? language,
+      List<String>? genres,
       String? premiered,
-      ShowSchedule schedule,
-      String summary,
-      Map<String, String> image});
+      ShowSchedule? schedule,
+      String? summary,
+      Map<String, String>? image});
 
   @override
-  $ShowScheduleCopyWith<$Res> get schedule;
+  $ShowScheduleCopyWith<$Res>? get schedule;
 }
 
 /// @nodoc
@@ -204,19 +209,19 @@ class __$ShowCopyWithImpl<$Res> extends _$ShowCopyWithImpl<$Res>
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genres: genres == freezed
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       premiered: premiered == freezed
           ? _value.premiered
           : premiered // ignore: cast_nullable_to_non_nullable
@@ -224,15 +229,15 @@ class __$ShowCopyWithImpl<$Res> extends _$ShowCopyWithImpl<$Res>
       schedule: schedule == freezed
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
-              as ShowSchedule,
+              as ShowSchedule?,
       summary: summary == freezed
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, String>?,
     ));
   }
 }
@@ -256,21 +261,21 @@ class _$_Show implements _Show {
   @override
   final int id;
   @override
-  final String url;
+  final String? url;
   @override
-  final String name;
+  final String? name;
   @override
-  final String language;
+  final String? language;
   @override
-  final List<String> genres;
+  final List<String>? genres;
   @override
   final String? premiered;
   @override
-  final ShowSchedule schedule;
+  final ShowSchedule? schedule;
   @override //HTML format
-  final String summary;
+  final String? summary;
   @override
-  final Map<String, String> image;
+  final Map<String, String>? image;
 
   @override
   String toString() {
@@ -332,35 +337,35 @@ class _$_Show implements _Show {
 abstract class _Show implements Show {
   const factory _Show(
       {required int id,
-      required String url,
-      required String name,
-      required String language,
-      required List<String> genres,
+      required String? url,
+      required String? name,
+      required String? language,
+      required List<String>? genres,
       String? premiered,
-      required ShowSchedule schedule,
-      required String summary,
-      required Map<String, String> image}) = _$_Show;
+      required ShowSchedule? schedule,
+      required String? summary,
+      required Map<String, String>? image}) = _$_Show;
 
   factory _Show.fromJson(Map<String, dynamic> json) = _$_Show.fromJson;
 
   @override
   int get id => throw _privateConstructorUsedError;
   @override
-  String get url => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String get language => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
   @override
-  List<String> get genres => throw _privateConstructorUsedError;
+  List<String>? get genres => throw _privateConstructorUsedError;
   @override
   String? get premiered => throw _privateConstructorUsedError;
   @override
-  ShowSchedule get schedule => throw _privateConstructorUsedError;
+  ShowSchedule? get schedule => throw _privateConstructorUsedError;
   @override //HTML format
-  String get summary => throw _privateConstructorUsedError;
+  String? get summary => throw _privateConstructorUsedError;
   @override
-  Map<String, String> get image => throw _privateConstructorUsedError;
+  Map<String, String>? get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ShowCopyWith<_Show> get copyWith => throw _privateConstructorUsedError;

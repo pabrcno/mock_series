@@ -9,15 +9,15 @@ part 'show.g.dart';
 abstract class Show with _$Show {
   const factory Show(
       {required int id,
-      required String url,
-      required String name,
-      required String language,
-      required List<String> genres,
+      required String? url,
+      required String? name,
+      required String? language,
+      required List<String>? genres,
       String? premiered,
-      required ShowSchedule schedule,
+      required ShowSchedule? schedule,
       //HTML format
-      required String summary,
-      required Map<String, String> image}) = _Show;
+      required String? summary,
+      required Map<String, String>? image}) = _Show;
 
   @override
   factory Show.fromJson(Map<String, dynamic> json) => _$ShowFromJson(json);

@@ -7,12 +7,17 @@ part 'episode.g.dart';
 @JsonSerializable()
 abstract class Episode with _$Episode {
   const factory Episode(
-      {required int id,
-      required String url,
-      required String name,
-      required int season,
-      required int number,
+      {required int? id,
+      required String? url,
+      required String? name,
+      required int? season,
+      required int? number,
       //HTML format
-      required String summary,
-      required Map<String, String> images}) = _Episode;
+      required String? summary,
+      required Map<String, String>? images}) = _Episode;
+  @override
+  factory Episode.fromJson(Map<String, dynamic> json) =>
+      _$EpisodeFromJson(json);
+  @override
+  Map<String, dynamic> toJson() => _$EpisodeToJson(this);
 }
