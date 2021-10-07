@@ -36,6 +36,10 @@ class _$ShowServiceFailureTearOff {
   ServerError serverError() {
     return const ServerError();
   }
+
+  UnexpectedError unexpectedError() {
+    return const UnexpectedError();
+  }
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ mixin _$ShowServiceFailure {
     required TResult Function() notFound,
     required TResult Function() timeout,
     required TResult Function() serverError,
+    required TResult Function() unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +64,7 @@ mixin _$ShowServiceFailure {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +74,7 @@ mixin _$ShowServiceFailure {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,6 +85,7 @@ mixin _$ShowServiceFailure {
     required TResult Function(NotFound value) notFound,
     required TResult Function(Timeout value) timeout,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnexpectedError value) unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +95,7 @@ mixin _$ShowServiceFailure {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +105,7 @@ mixin _$ShowServiceFailure {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,6 +171,7 @@ class _$RateLimit implements RateLimit {
     required TResult Function() notFound,
     required TResult Function() timeout,
     required TResult Function() serverError,
+    required TResult Function() unexpectedError,
   }) {
     return rateLimit();
   }
@@ -173,6 +184,7 @@ class _$RateLimit implements RateLimit {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
   }) {
     return rateLimit?.call();
   }
@@ -185,6 +197,7 @@ class _$RateLimit implements RateLimit {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
     if (rateLimit != null) {
@@ -201,6 +214,7 @@ class _$RateLimit implements RateLimit {
     required TResult Function(NotFound value) notFound,
     required TResult Function(Timeout value) timeout,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return rateLimit(this);
   }
@@ -213,6 +227,7 @@ class _$RateLimit implements RateLimit {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
   }) {
     return rateLimit?.call(this);
   }
@@ -225,6 +240,7 @@ class _$RateLimit implements RateLimit {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
     if (rateLimit != null) {
@@ -283,6 +299,7 @@ class _$Unauthorized implements Unauthorized {
     required TResult Function() notFound,
     required TResult Function() timeout,
     required TResult Function() serverError,
+    required TResult Function() unexpectedError,
   }) {
     return unauthorized();
   }
@@ -295,6 +312,7 @@ class _$Unauthorized implements Unauthorized {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
   }) {
     return unauthorized?.call();
   }
@@ -307,6 +325,7 @@ class _$Unauthorized implements Unauthorized {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -323,6 +342,7 @@ class _$Unauthorized implements Unauthorized {
     required TResult Function(NotFound value) notFound,
     required TResult Function(Timeout value) timeout,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return unauthorized(this);
   }
@@ -335,6 +355,7 @@ class _$Unauthorized implements Unauthorized {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
   }) {
     return unauthorized?.call(this);
   }
@@ -347,6 +368,7 @@ class _$Unauthorized implements Unauthorized {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -403,6 +425,7 @@ class _$NotFound implements NotFound {
     required TResult Function() notFound,
     required TResult Function() timeout,
     required TResult Function() serverError,
+    required TResult Function() unexpectedError,
   }) {
     return notFound();
   }
@@ -415,6 +438,7 @@ class _$NotFound implements NotFound {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
   }) {
     return notFound?.call();
   }
@@ -427,6 +451,7 @@ class _$NotFound implements NotFound {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -443,6 +468,7 @@ class _$NotFound implements NotFound {
     required TResult Function(NotFound value) notFound,
     required TResult Function(Timeout value) timeout,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return notFound(this);
   }
@@ -455,6 +481,7 @@ class _$NotFound implements NotFound {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
   }) {
     return notFound?.call(this);
   }
@@ -467,6 +494,7 @@ class _$NotFound implements NotFound {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -522,6 +550,7 @@ class _$Timeout implements Timeout {
     required TResult Function() notFound,
     required TResult Function() timeout,
     required TResult Function() serverError,
+    required TResult Function() unexpectedError,
   }) {
     return timeout();
   }
@@ -534,6 +563,7 @@ class _$Timeout implements Timeout {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
   }) {
     return timeout?.call();
   }
@@ -546,6 +576,7 @@ class _$Timeout implements Timeout {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -562,6 +593,7 @@ class _$Timeout implements Timeout {
     required TResult Function(NotFound value) notFound,
     required TResult Function(Timeout value) timeout,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return timeout(this);
   }
@@ -574,6 +606,7 @@ class _$Timeout implements Timeout {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
   }) {
     return timeout?.call(this);
   }
@@ -586,6 +619,7 @@ class _$Timeout implements Timeout {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -644,6 +678,7 @@ class _$ServerError implements ServerError {
     required TResult Function() notFound,
     required TResult Function() timeout,
     required TResult Function() serverError,
+    required TResult Function() unexpectedError,
   }) {
     return serverError();
   }
@@ -656,6 +691,7 @@ class _$ServerError implements ServerError {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
   }) {
     return serverError?.call();
   }
@@ -668,6 +704,7 @@ class _$ServerError implements ServerError {
     TResult Function()? notFound,
     TResult Function()? timeout,
     TResult Function()? serverError,
+    TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -684,6 +721,7 @@ class _$ServerError implements ServerError {
     required TResult Function(NotFound value) notFound,
     required TResult Function(Timeout value) timeout,
     required TResult Function(ServerError value) serverError,
+    required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return serverError(this);
   }
@@ -696,6 +734,7 @@ class _$ServerError implements ServerError {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
   }) {
     return serverError?.call(this);
   }
@@ -708,6 +747,7 @@ class _$ServerError implements ServerError {
     TResult Function(NotFound value)? notFound,
     TResult Function(Timeout value)? timeout,
     TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -719,4 +759,132 @@ class _$ServerError implements ServerError {
 
 abstract class ServerError implements ShowServiceFailure {
   const factory ServerError() = _$ServerError;
+}
+
+/// @nodoc
+abstract class $UnexpectedErrorCopyWith<$Res> {
+  factory $UnexpectedErrorCopyWith(
+          UnexpectedError value, $Res Function(UnexpectedError) then) =
+      _$UnexpectedErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UnexpectedErrorCopyWithImpl<$Res>
+    extends _$ShowServiceFailureCopyWithImpl<$Res>
+    implements $UnexpectedErrorCopyWith<$Res> {
+  _$UnexpectedErrorCopyWithImpl(
+      UnexpectedError _value, $Res Function(UnexpectedError) _then)
+      : super(_value, (v) => _then(v as UnexpectedError));
+
+  @override
+  UnexpectedError get _value => super._value as UnexpectedError;
+}
+
+/// @nodoc
+
+class _$UnexpectedError implements UnexpectedError {
+  const _$UnexpectedError();
+
+  @override
+  String toString() {
+    return 'ShowServiceFailure.unexpectedError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UnexpectedError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() rateLimit,
+    required TResult Function() unauthorized,
+    required TResult Function() notFound,
+    required TResult Function() timeout,
+    required TResult Function() serverError,
+    required TResult Function() unexpectedError,
+  }) {
+    return unexpectedError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? rateLimit,
+    TResult Function()? unauthorized,
+    TResult Function()? notFound,
+    TResult Function()? timeout,
+    TResult Function()? serverError,
+    TResult Function()? unexpectedError,
+  }) {
+    return unexpectedError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? rateLimit,
+    TResult Function()? unauthorized,
+    TResult Function()? notFound,
+    TResult Function()? timeout,
+    TResult Function()? serverError,
+    TResult Function()? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (unexpectedError != null) {
+      return unexpectedError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RateLimit value) rateLimit,
+    required TResult Function(Unauthorized value) unauthorized,
+    required TResult Function(NotFound value) notFound,
+    required TResult Function(Timeout value) timeout,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+  }) {
+    return unexpectedError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RateLimit value)? rateLimit,
+    TResult Function(Unauthorized value)? unauthorized,
+    TResult Function(NotFound value)? notFound,
+    TResult Function(Timeout value)? timeout,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+  }) {
+    return unexpectedError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RateLimit value)? rateLimit,
+    TResult Function(Unauthorized value)? unauthorized,
+    TResult Function(NotFound value)? notFound,
+    TResult Function(Timeout value)? timeout,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (unexpectedError != null) {
+      return unexpectedError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UnexpectedError implements ShowServiceFailure {
+  const factory UnexpectedError() = _$UnexpectedError;
 }

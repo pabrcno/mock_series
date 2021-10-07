@@ -8,4 +8,5 @@ abstract class ShowServiceFailure with _$ShowServiceFailure {
   const factory ShowServiceFailure.notFound() = NotFound;
   const factory ShowServiceFailure.timeout() = Timeout;
   const factory ShowServiceFailure.serverError() = ServerError;
+  const factory ShowServiceFailure.unexpectedError() = UnexpectedError;
 }

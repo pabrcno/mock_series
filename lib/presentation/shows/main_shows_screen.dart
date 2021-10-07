@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
+import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 import '../../injection.dart';
 import 'widgets/search_bar.dart';
 
@@ -9,8 +10,9 @@ class MainShowsScreen extends StatelessWidget {
   const MainShowsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    ShowsController showController = Get.put(getIt<ShowsController>());
-    showController.getMainScreenShowsList();
+    ShowsController showsController = Get.put(getIt<ShowsController>());
+
+    showsController.getMainScreenShowsList(showShowsSnackBar);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -24,7 +26,22 @@ class MainShowsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Stack(
               children: <Widget>[
-                const Center(child: Text("SHOWS")),
+                Obx(() {
+                  return showsController.mainShowList.isNotEmpty
+                      ? SingleChildScrollView(
+                          child: Column(
+                          children: showsController.mainShowList
+                              .map((element) => Text(element.name))
+                              .toList(),
+                        ))
+                      : const CircularProgressIndicator();
+                }),
+                SingleChildScrollView(
+                    child: Column(
+                  children: showsController.mainShowList
+                      .map((element) => Text(element.name))
+                      .toList(),
+                )),
                 Positioned(
                   bottom: 10,
                   child: OpenSearchBar(
@@ -34,7 +51,7 @@ class MainShowsScreen extends StatelessWidget {
                       return ClosedSearchBar(openContainer: openContainer);
                     },
                   ),
-                )
+                ),
               ],
             ),
           )),
