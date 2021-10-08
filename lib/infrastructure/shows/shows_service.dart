@@ -34,7 +34,7 @@ class ShowsService implements IShowsServiceFacade {
       List<Show> showsList = [];
       response.data
           .forEach((json) => showsList.add(Show.fromJson(json["show"])));
-      print(showsList);
+
       return right(showsList);
     } on DioError catch (e) {
       return left(_handleError(e));
@@ -42,9 +42,17 @@ class ShowsService implements IShowsServiceFacade {
   }
 
   @override
-  Future<Either<ShowServiceFailure, Show>> getShow({required int id}) {
-    // TODO: implement getShow
-    throw UnimplementedError();
+  Future<Either<ShowServiceFailure, List<Season>>> getShowSeasons(
+      {required int showId}) async {
+    String pageUri = '${_apiUrl}shows/$showId/seasons';
+    try {
+      var response = await dio.get(pageUri);
+      List<Season> seasonsList = [];
+      response.data.forEach((json) => seasonsList.add(Season.fromJson(json)));
+      return right(seasonsList);
+    } on DioError catch (e) {
+      return left(_handleError(e));
+    }
   }
 
   @override
@@ -55,9 +63,8 @@ class ShowsService implements IShowsServiceFacade {
   }
 
   @override
-  Future<Either<ShowServiceFailure, List<Season>>> getShowSeasons(
-      {required int showId}) {
-    // TODO: implement getShowSeasons
+  Future<Either<ShowServiceFailure, Show>> getShow({required int id}) {
+    // TODO: implement getShow
     throw UnimplementedError();
   }
 
