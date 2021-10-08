@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/injection.dart';
+import 'package:mock_series/presentation/shows/show_screen.dart';
 import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 
 class ShowPresentation extends StatelessWidget {
@@ -39,6 +40,7 @@ class ShowPresentation extends StatelessWidget {
                     onTap: () {
                       showsController.setShowScreenInitialData(
                           show: show, showErrorSnackBar: showShowsSnackBar);
+                      Get.to(ShowScreen(show: show));
                     },
                     child: Image.network(
                       show.image!["medium"]!,

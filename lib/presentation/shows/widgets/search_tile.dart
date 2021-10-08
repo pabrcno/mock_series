@@ -5,6 +5,8 @@ import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/injection.dart';
 import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 
+import '../show_screen.dart';
+
 class SearchTile extends StatelessWidget {
   final Show show;
   const SearchTile({Key? key, required this.show}) : super(key: key);
@@ -16,6 +18,7 @@ class SearchTile extends StatelessWidget {
       onTap: () {
         showsController.setShowScreenInitialData(
             show: show, showErrorSnackBar: showShowsSnackBar);
+        Get.to(ShowScreen(show: show));
       },
       child: Container(
         margin: const EdgeInsets.only(top: 2, right: 2, left: 2),
