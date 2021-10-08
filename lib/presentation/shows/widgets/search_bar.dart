@@ -1,39 +1,58 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mock_series/application/shows_controller/shows_controller.dart';
+import 'package:mock_series/injection.dart';
+import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
+import 'package:mock_series/presentation/shows/widgets/search_tile.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
+    ShowsController showsController = Get.put(getIt<ShowsController>());
+    return Obx(() {
+      return Padding(
+        padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
         child: SingleChildScrollView(
-          child: Column(children: [
-            TextFormField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(Icons.search, color: Colors.white),
-                  labelText: 'Search a show',
-                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                )),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.80,
-              width: MediaQuery.of(context).size.width,
-              child: ListView(children: const <Widget>[
-                ListTile(
-                  title: Text("HELO 1"),
+          child: Column(
+            children: [
+              TextFormField(
+                  onChanged: (value) => showsController.searchShows(
+                      search: value, showErrorSnackBar: showShowsSnackBar),
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    fillColor: Theme.of(context).backgroundColor,
+                    filled: true,
+                    suffixIcon: const Icon(Icons.search, color: Colors.white),
+                    labelText: "Seach a show",
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                  )),
+              Center(
+                child: Column(
+                  children: [
+                    ...showsController.searchShowList
+                        .map((show) => SearchTile(show: show))
+                        .toList(),
+                    showsController.isSearchLoading.value
+                        ? const Center(
+                            child: Padding(
+                                padding: EdgeInsets.all(10),
+                                child: CircularProgressIndicator()),
+                          )
+                        : const SizedBox(
+                            height: 1,
+                          )
+                  ],
                 ),
-                ListTile(
-                  title: Text("HELO 2"),
-                ),
-                ListTile(
-                  title: Text("HELO 3"),
-                )
-              ]),
-            )
-          ]),
-        ));
+              )
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
 

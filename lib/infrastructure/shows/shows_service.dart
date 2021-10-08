@@ -10,11 +10,11 @@ import 'package:mock_series/domain/shows/models/episode.dart';
 @LazySingleton(as: IShowsServiceFacade)
 class ShowsService implements IShowsServiceFacade {
   Dio dio = Dio();
-
+  final String _apiUrl = "https://api.tvmaze.com/";
   @override
   Future<Either<ShowServiceFailure, List<Show>>> getShowsPage(
       {required int page}) async {
-    String pageUri = 'https://api.tvmaze.com/shows?page=$page';
+    String pageUri = '${_apiUrl}shows?page=$page';
     try {
       var response = await dio.get(pageUri);
       List<Show> showsList = [];
@@ -27,9 +27,18 @@ class ShowsService implements IShowsServiceFacade {
 
   @override
   Future<Either<ShowServiceFailure, List<Show>>> getShowsSearch(
-      {required String search}) {
-    // TODO: implement getShowsSearch
-    throw UnimplementedError();
+      {required String search}) async {
+    String pageUri = '${_apiUrl}search/shows?q=$search';
+    try {
+      var response = await dio.get(pageUri);
+      List<Show> showsList = [];
+      response.data
+          .forEach((json) => showsList.add(Show.fromJson(json["show"])));
+      print(showsList);
+      return right(showsList);
+    } on DioError catch (e) {
+      return left(_handleError(e));
+    }
   }
 
   @override

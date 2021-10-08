@@ -9,6 +9,7 @@ import 'package:mock_series/domain/shows/show_service_failure.dart';
 class ShowsController extends GetxController {
   final IShowsServiceFacade _showsService;
   RxBool isShowpageLoading = false.obs;
+  RxBool isSearchLoading = false.obs;
 
   RxInt showPageIndex = 1.obs;
   RxInt memoryIndex = 0.obs;
@@ -16,12 +17,18 @@ class ShowsController extends GetxController {
   final RxList<Show> memoryShowList = <Show>[].obs;
   final RxList<Show> toLoadShowList = <Show>[].obs;
 
+  final RxList<Show> searchShowList = <Show>[].obs;
+
   ShowsController(this._showsService);
 
-  getMainShowList() => toLoadShowList;
+  initializeShowLists({required showErrorSnackBar}) async {
+    await getMainScreenShowsList(showErrorSnackBar: showErrorSnackBar);
+    setToLoadShowList();
+  }
+
   addToPageIndex() => showPageIndex++;
 
-  getMainScreenShowsList(showErrorSnackBar) async {
+  getMainScreenShowsList({required showErrorSnackBar}) async {
     isShowpageLoading.value = true;
     Either<ShowServiceFailure, List<Show>> showListOption =
         await _showsService.getShowsPage(page: showPageIndex.value);
@@ -45,8 +52,14 @@ class ShowsController extends GetxController {
     memoryIndex.value = nextMemoryIndex;
   }
 
-  initializeShowLists(showErrorSnackBar) async {
-    await getMainScreenShowsList(showErrorSnackBar);
-    setToLoadShowList();
+  searchShows({required search, required showErrorSnackBar}) async {
+    isSearchLoading.value = true;
+    Either<ShowServiceFailure, List<Show>> showListOption =
+        await _showsService.getShowsSearch(search: search);
+    isSearchLoading.value = false;
+    showListOption.fold(
+        (f) => showErrorSnackBar(f),
+        // ignore: avoid_function_literals_in_foreach_calls
+        (showsList) => searchShowList.value = showsList);
   }
 }

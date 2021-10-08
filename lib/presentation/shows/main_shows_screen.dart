@@ -13,7 +13,7 @@ class MainShowsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ShowsController showsController = Get.put(getIt<ShowsController>());
 
-    showsController.initializeShowLists(showShowsSnackBar);
+    showsController.initializeShowLists(showErrorSnackBar: showShowsSnackBar);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,14 +38,16 @@ class MainShowsScreen extends StatelessWidget {
                       if (showsController.memoryIndex.value >=
                           showsController.memoryShowList.length) {
                         showsController.addToPageIndex();
-                        showsController
-                            .getMainScreenShowsList(showShowsSnackBar);
+                        showsController.getMainScreenShowsList(
+                            showErrorSnackBar: showShowsSnackBar);
                       }
                       showsController.setToLoadShowList();
                       print(showsController.toLoadShowList);
                     }
                   });
                   return Center(
+                      child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
                     child: SingleChildScrollView(
                         controller: _scrollController,
                         child: Column(children: [
@@ -60,7 +62,7 @@ class MainShowsScreen extends StatelessWidget {
                                   height: 1,
                                 )
                         ])),
-                  );
+                  ));
                 }),
                 Positioned(
                   bottom: 10,

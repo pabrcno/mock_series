@@ -39,7 +39,7 @@ class ShowPresentation extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              print("like");
+              //TODO: APPLY LIKE LOGIC
             },
             child: Container(
               width: width + 2,
