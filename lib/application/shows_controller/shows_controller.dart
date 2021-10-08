@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mock_series/domain/shows/i_shows_service_facade.dart';
+import 'package:mock_series/domain/shows/models/season.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/domain/shows/show_service_failure.dart';
 
@@ -19,6 +20,7 @@ class ShowsController extends GetxController {
 
   final RxList<Show> searchShowList = <Show>[].obs;
 
+  final RxList<Season> showSeasonsList = <Season>[].obs;
   ShowsController(this._showsService);
 
   initializeShowLists({required showErrorSnackBar}) async {
@@ -61,5 +63,15 @@ class ShowsController extends GetxController {
         (f) => showErrorSnackBar(f),
         // ignore: avoid_function_literals_in_foreach_calls
         (showsList) => searchShowList.value = showsList);
+  }
+
+  _setShowSeasons({required int showId, required showErrorSnackBar}) async {
+    Either<ShowServiceFailure, List<Season>> seasonsListOption =
+        await _showsService.getShowSeasons(showId: showId);
+    isSearchLoading.value = false;
+    seasonsListOption.fold(
+        (f) => showErrorSnackBar(f),
+        // ignore: avoid_function_literals_in_foreach_calls
+        (seasonsList) => showSeasonsList.value = seasonsList);
   }
 }

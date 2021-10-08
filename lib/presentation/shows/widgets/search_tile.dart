@@ -18,11 +18,10 @@ class SearchTile extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 0.2)),
         width: MediaQuery.of(context).size.width,
         child: SizedBox(
-          width: MediaQuery.of(context).size.width - 40,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
+                margin: const EdgeInsets.only(right: 35),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.white, width: 0.5),
                 ),
@@ -35,12 +34,11 @@ class SearchTile extends StatelessWidget {
                       )
                     : Text(show.name!),
               ),
-              SizedBox(
-                child: Text(
-                  show.name!,
-                  style: const TextStyle(fontSize: 22),
-                ),
-              ),
+              Flexible(
+                  child: Text(
+                show.name!,
+                style: const TextStyle(fontSize: 22),
+              )),
             ],
           ),
         ),
