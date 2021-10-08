@@ -18,7 +18,7 @@ class SearchTile extends StatelessWidget {
       onTap: () {
         showsController.setShowScreenInitialData(
             show: show, showErrorSnackBar: showShowsSnackBar);
-        Get.to(ShowScreen(show: show));
+        Get.to(() => ShowScreen(show: show));
       },
       child: Container(
         margin: const EdgeInsets.only(top: 2, right: 2, left: 2),

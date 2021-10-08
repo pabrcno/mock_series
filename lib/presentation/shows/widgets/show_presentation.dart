@@ -45,7 +45,7 @@ class ShowPresentation extends StatelessWidget {
                     onTap: () {
                       showsController.setShowScreenInitialData(
                           show: show, showErrorSnackBar: showShowsSnackBar);
-                      Get.to(ShowScreen(show: show));
+                      Get.to(() => ShowScreen(show: show));
                     },
                     child: Image.network(
                       show.image!.original!,
