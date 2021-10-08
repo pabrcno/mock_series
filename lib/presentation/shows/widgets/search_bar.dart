@@ -14,7 +14,7 @@ class SearchBar extends StatelessWidget {
     ShowsController showsController = Get.put(getIt<ShowsController>());
     return Obx(() {
       return Padding(
-        padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+        padding: const EdgeInsets.only(top: 50, left: 12, right: 12),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -26,10 +26,13 @@ class SearchBar extends StatelessWidget {
                     fillColor: Theme.of(context).backgroundColor,
                     filled: true,
                     suffixIcon: const Icon(Icons.search, color: Colors.white),
-                    labelText: "Seach a show",
+                    hintText: "Search a show",
                     labelStyle:
                         TextStyle(color: Theme.of(context).primaryColor),
                   )),
+              const SizedBox(
+                height: 7,
+              ),
               Center(
                 child: Column(
                   children: [

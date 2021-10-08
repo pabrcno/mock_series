@@ -12,6 +12,7 @@ class SearchTile extends StatelessWidget {
         //TODO: GO TO MOVIE PAGE
       },
       child: Container(
+        margin: EdgeInsets.only(top: 1),
         padding: const EdgeInsets.only(right: 30),
         decoration: BoxDecoration(
             color: Theme.of(context).backgroundColor,

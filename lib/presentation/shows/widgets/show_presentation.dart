@@ -17,8 +17,11 @@ class ShowPresentation extends StatelessWidget {
             width: width,
             child: Text(
               show.name!,
-              style: const TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 20),
             ),
+          ),
+          SizedBox(
+            height: 5,
           ),
           Container(
             decoration: BoxDecoration(
