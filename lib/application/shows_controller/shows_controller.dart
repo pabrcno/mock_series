@@ -49,7 +49,7 @@ class ShowsController extends GetxController {
   }
 
   appendToLoadShowList() {
-    const int loadPerCall = 10;
+    const int loadPerCall = 16;
     int nextMemoryIndex = loadPerCall + memoryIndex.value;
     for (int i = memoryIndex.value;
         i < nextMemoryIndex && i < memoryShowList.length;
