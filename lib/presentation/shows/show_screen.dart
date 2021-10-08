@@ -14,18 +14,21 @@ class ShowScreen extends StatelessWidget {
           title: Text(show.name!),
         ),
         body: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(children: [
               Html(data: show.summary),
-              Container(
+              SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(children: [
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text("Episodes"), SeasonsSelector()])),
+                            children: const [
+                              Text("Episodes"),
+                              SeasonsSelector()
+                            ])),
                     const Divider(
                       height: 1,
                     ),

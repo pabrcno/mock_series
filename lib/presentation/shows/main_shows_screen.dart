@@ -23,7 +23,7 @@ class MainShowsScreen extends StatelessWidget {
       body: Container(
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
-              image: DecorationImage(
+              image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage("assets/images/main_background.png"))),
           height: MediaQuery.of(context).size.height,
