@@ -20,6 +20,7 @@ class ShowPresentation extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
+            //title
             width: width,
             child: Text(
               show.name!,
@@ -37,18 +38,20 @@ class ShowPresentation extends StatelessWidget {
             width: width,
             child: show.image != null
                 ? InkWell(
+                    //image
                     onTap: () {
                       showsController.setShowScreenInitialData(
                           show: show, showErrorSnackBar: showShowsSnackBar);
                       Get.to(ShowScreen(show: show));
                     },
                     child: Image.network(
-                      show.image!["medium"]!,
+                      show.image!.medium!,
                       semanticLabel: show.name,
                     ))
                 : Text(show.name!),
           ),
           InkWell(
+            //add to favorites
             onTap: () {
               //TODO: APPLY LIKE LOGIC
             },

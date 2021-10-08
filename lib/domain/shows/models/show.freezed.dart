@@ -30,7 +30,7 @@ class _$ShowTearOff {
       String? premiered,
       required ShowSchedule? schedule,
       required String? summary,
-      required Map<String, String>? image}) {
+      required MediaImage? image}) {
     return _Show(
       id: id,
       url: url,
@@ -63,7 +63,7 @@ mixin _$Show {
   ShowSchedule? get schedule =>
       throw _privateConstructorUsedError; //HTML format
   String? get summary => throw _privateConstructorUsedError;
-  Map<String, String>? get image => throw _privateConstructorUsedError;
+  MediaImage? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -83,9 +83,10 @@ abstract class $ShowCopyWith<$Res> {
       String? premiered,
       ShowSchedule? schedule,
       String? summary,
-      Map<String, String>? image});
+      MediaImage? image});
 
   $ShowScheduleCopyWith<$Res>? get schedule;
+  $MediaImageCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -144,7 +145,7 @@ class _$ShowCopyWithImpl<$Res> implements $ShowCopyWith<$Res> {
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
+              as MediaImage?,
     ));
   }
 
@@ -156,6 +157,17 @@ class _$ShowCopyWithImpl<$Res> implements $ShowCopyWith<$Res> {
 
     return $ShowScheduleCopyWith<$Res>(_value.schedule!, (value) {
       return _then(_value.copyWith(schedule: value));
+    });
+  }
+
+  @override
+  $MediaImageCopyWith<$Res>? get image {
+    if (_value.image == null) {
+      return null;
+    }
+
+    return $MediaImageCopyWith<$Res>(_value.image!, (value) {
+      return _then(_value.copyWith(image: value));
     });
   }
 }
@@ -174,10 +186,12 @@ abstract class _$ShowCopyWith<$Res> implements $ShowCopyWith<$Res> {
       String? premiered,
       ShowSchedule? schedule,
       String? summary,
-      Map<String, String>? image});
+      MediaImage? image});
 
   @override
   $ShowScheduleCopyWith<$Res>? get schedule;
+  @override
+  $MediaImageCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -237,7 +251,7 @@ class __$ShowCopyWithImpl<$Res> extends _$ShowCopyWithImpl<$Res>
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
+              as MediaImage?,
     ));
   }
 }
@@ -275,7 +289,7 @@ class _$_Show implements _Show {
   @override //HTML format
   final String? summary;
   @override
-  final Map<String, String>? image;
+  final MediaImage? image;
 
   @override
   String toString() {
@@ -344,7 +358,7 @@ abstract class _Show implements Show {
       String? premiered,
       required ShowSchedule? schedule,
       required String? summary,
-      required Map<String, String>? image}) = _$_Show;
+      required MediaImage? image}) = _$_Show;
 
   factory _Show.fromJson(Map<String, dynamic> json) = _$_Show.fromJson;
 
@@ -365,7 +379,7 @@ abstract class _Show implements Show {
   @override //HTML format
   String? get summary => throw _privateConstructorUsedError;
   @override
-  Map<String, String>? get image => throw _privateConstructorUsedError;
+  MediaImage? get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ShowCopyWith<_Show> get copyWith => throw _privateConstructorUsedError;

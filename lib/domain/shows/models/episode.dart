@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'media_image.dart';
+
 part 'episode.freezed.dart';
 part 'episode.g.dart';
 
@@ -14,7 +16,7 @@ abstract class Episode with _$Episode {
       required int? number,
       //HTML format
       required String? summary,
-      required Map<String, String>? images}) = _Episode;
+      required MediaImage? image}) = _Episode;
   @override
   factory Episode.fromJson(Map<String, dynamic> json) =>
       _$EpisodeFromJson(json);

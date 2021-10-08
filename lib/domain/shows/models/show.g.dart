@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'show.dart';
 
 // **************************************************************************
@@ -20,9 +18,9 @@ part of 'show.dart';
 //           ? null
 //           : ShowSchedule.fromJson(json['schedule'] as Map<String, dynamic>),
 //       summary: json['summary'] as String?,
-//       image: (json['image'] as Map<String, dynamic>?)?.map(
-//         (k, e) => MapEntry(k, e as String),
-//       ),
+//       image: json['image'] == null
+//           ? null
+//           : MediaImage.fromJson(json['image'] as Map<String, dynamic>),
 //     );
 
 Map<String, dynamic> _$ShowToJson(Show instance) => <String, dynamic>{
@@ -49,9 +47,9 @@ _$_Show _$$_ShowFromJson(Map<String, dynamic> json) => _$_Show(
           ? null
           : ShowSchedule.fromJson(json['schedule'] as Map<String, dynamic>),
       summary: json['summary'] as String?,
-      image: (json['image'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
+      image: json['image'] == null
+          ? null
+          : MediaImage.fromJson(json['image'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ShowToJson(_$_Show instance) => <String, dynamic>{

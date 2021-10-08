@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mock_series/domain/shows/models/show_schedule.dart';
 
+import 'media_image.dart';
+
 part 'show.freezed.dart';
 part 'show.g.dart';
 
@@ -17,7 +19,7 @@ abstract class Show with _$Show {
       required ShowSchedule? schedule,
       //HTML format
       required String? summary,
-      required Map<String, String>? image}) = _Show;
+      required MediaImage? image}) = _Show;
 
   @override
   factory Show.fromJson(Map<String, dynamic> json) => _$ShowFromJson(json);

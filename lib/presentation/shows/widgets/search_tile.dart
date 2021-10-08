@@ -31,6 +31,7 @@ class SearchTile extends StatelessWidget {
           child: Row(
             children: [
               Container(
+                //image
                 margin: const EdgeInsets.only(right: 35),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.white, width: 0.1),
@@ -39,12 +40,13 @@ class SearchTile extends StatelessWidget {
                 width: 105,
                 child: show.image != null
                     ? Image.network(
-                        show.image!["medium"]!,
+                        show.image!.medium!,
                         semanticLabel: show.name,
                       )
                     : Text(show.name!),
               ),
               Flexible(
+                  //title
                   child: Text(
                 show.name!,
                 style: const TextStyle(fontSize: 20),

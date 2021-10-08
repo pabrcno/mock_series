@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'episode.dart';
 
 // **************************************************************************
@@ -15,9 +13,9 @@ part of 'episode.dart';
 //       season: json['season'] as int?,
 //       number: json['number'] as int?,
 //       summary: json['summary'] as String?,
-//       images: (json['images'] as Map<String, dynamic>?)?.map(
-//         (k, e) => MapEntry(k, e as String),
-//       ),
+//       image: json['image'] == null
+//           ? null
+//           : MediaImage.fromJson(json['image'] as Map<String, dynamic>),
 //     );
 
 Map<String, dynamic> _$EpisodeToJson(Episode instance) => <String, dynamic>{
@@ -27,7 +25,7 @@ Map<String, dynamic> _$EpisodeToJson(Episode instance) => <String, dynamic>{
       'season': instance.season,
       'number': instance.number,
       'summary': instance.summary,
-      'images': instance.images,
+      'image': instance.image,
     };
 
 _$_Episode _$$_EpisodeFromJson(Map<String, dynamic> json) => _$_Episode(
@@ -37,9 +35,9 @@ _$_Episode _$$_EpisodeFromJson(Map<String, dynamic> json) => _$_Episode(
       season: json['season'] as int?,
       number: json['number'] as int?,
       summary: json['summary'] as String?,
-      images: (json['images'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
+      image: json['image'] == null
+          ? null
+          : MediaImage.fromJson(json['image'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_EpisodeToJson(_$_Episode instance) =>
@@ -50,5 +48,5 @@ Map<String, dynamic> _$$_EpisodeToJson(_$_Episode instance) =>
       'season': instance.season,
       'number': instance.number,
       'summary': instance.summary,
-      'images': instance.images,
+      'image': instance.image,
     };

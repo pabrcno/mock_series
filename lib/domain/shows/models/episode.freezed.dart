@@ -28,7 +28,7 @@ class _$EpisodeTearOff {
       required int? season,
       required int? number,
       required String? summary,
-      required Map<String, String>? images}) {
+      required MediaImage? image}) {
     return _Episode(
       id: id,
       url: url,
@@ -36,7 +36,7 @@ class _$EpisodeTearOff {
       season: season,
       number: number,
       summary: summary,
-      images: images,
+      image: image,
     );
   }
 
@@ -56,7 +56,7 @@ mixin _$Episode {
   int? get season => throw _privateConstructorUsedError;
   int? get number => throw _privateConstructorUsedError; //HTML format
   String? get summary => throw _privateConstructorUsedError;
-  Map<String, String>? get images => throw _privateConstructorUsedError;
+  MediaImage? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +74,9 @@ abstract class $EpisodeCopyWith<$Res> {
       int? season,
       int? number,
       String? summary,
-      Map<String, String>? images});
+      MediaImage? image});
+
+  $MediaImageCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -93,7 +95,7 @@ class _$EpisodeCopyWithImpl<$Res> implements $EpisodeCopyWith<$Res> {
     Object? season = freezed,
     Object? number = freezed,
     Object? summary = freezed,
-    Object? images = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -120,11 +122,22 @@ class _$EpisodeCopyWithImpl<$Res> implements $EpisodeCopyWith<$Res> {
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String?,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as MediaImage?,
     ));
+  }
+
+  @override
+  $MediaImageCopyWith<$Res>? get image {
+    if (_value.image == null) {
+      return null;
+    }
+
+    return $MediaImageCopyWith<$Res>(_value.image!, (value) {
+      return _then(_value.copyWith(image: value));
+    });
   }
 }
 
@@ -140,7 +153,10 @@ abstract class _$EpisodeCopyWith<$Res> implements $EpisodeCopyWith<$Res> {
       int? season,
       int? number,
       String? summary,
-      Map<String, String>? images});
+      MediaImage? image});
+
+  @override
+  $MediaImageCopyWith<$Res>? get image;
 }
 
 /// @nodoc
@@ -160,7 +176,7 @@ class __$EpisodeCopyWithImpl<$Res> extends _$EpisodeCopyWithImpl<$Res>
     Object? season = freezed,
     Object? number = freezed,
     Object? summary = freezed,
-    Object? images = freezed,
+    Object? image = freezed,
   }) {
     return _then(_Episode(
       id: id == freezed
@@ -187,10 +203,10 @@ class __$EpisodeCopyWithImpl<$Res> extends _$EpisodeCopyWithImpl<$Res>
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String?,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as MediaImage?,
     ));
   }
 }
@@ -205,7 +221,7 @@ class _$_Episode implements _Episode {
       required this.season,
       required this.number,
       required this.summary,
-      required this.images});
+      required this.image});
 
   factory _$_Episode.fromJson(Map<String, dynamic> json) =>
       _$$_EpisodeFromJson(json);
@@ -223,11 +239,11 @@ class _$_Episode implements _Episode {
   @override //HTML format
   final String? summary;
   @override
-  final Map<String, String>? images;
+  final MediaImage? image;
 
   @override
   String toString() {
-    return 'Episode(id: $id, url: $url, name: $name, season: $season, number: $number, summary: $summary, images: $images)';
+    return 'Episode(id: $id, url: $url, name: $name, season: $season, number: $number, summary: $summary, image: $image)';
   }
 
   @override
@@ -247,8 +263,8 @@ class _$_Episode implements _Episode {
             (identical(other.summary, summary) ||
                 const DeepCollectionEquality()
                     .equals(other.summary, summary)) &&
-            (identical(other.images, images) ||
-                const DeepCollectionEquality().equals(other.images, images)));
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)));
   }
 
   @override
@@ -260,7 +276,7 @@ class _$_Episode implements _Episode {
       const DeepCollectionEquality().hash(season) ^
       const DeepCollectionEquality().hash(number) ^
       const DeepCollectionEquality().hash(summary) ^
-      const DeepCollectionEquality().hash(images);
+      const DeepCollectionEquality().hash(image);
 
   @JsonKey(ignore: true)
   @override
@@ -281,7 +297,7 @@ abstract class _Episode implements Episode {
       required int? season,
       required int? number,
       required String? summary,
-      required Map<String, String>? images}) = _$_Episode;
+      required MediaImage? image}) = _$_Episode;
 
   factory _Episode.fromJson(Map<String, dynamic> json) = _$_Episode.fromJson;
 
@@ -298,7 +314,7 @@ abstract class _Episode implements Episode {
   @override //HTML format
   String? get summary => throw _privateConstructorUsedError;
   @override
-  Map<String, String>? get images => throw _privateConstructorUsedError;
+  MediaImage? get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$EpisodeCopyWith<_Episode> get copyWith =>
