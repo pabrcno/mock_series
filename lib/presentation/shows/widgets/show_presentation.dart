@@ -16,6 +16,8 @@ class ShowPresentation extends StatelessWidget {
     ShowsController showsController = Get.put(getIt<ShowsController>());
     return InkWell(
         child: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(10))),
       margin: const EdgeInsets.all(10),
       child: Column(
         children: [
@@ -36,7 +38,6 @@ class ShowPresentation extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(color: Colors.white, width: 0.5),
             ),
-            height: 420,
             width: width,
             child: show.image != null
                 ? InkWell(

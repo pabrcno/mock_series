@@ -35,7 +35,7 @@ class MainShowsScreen extends StatelessWidget {
                 Obx(() {
                   ScrollController _scrollController = ScrollController();
                   _scrollController.addListener(() {
-                    int reloadMargin = -20;
+                    int reloadMargin = -800;
                     if (_scrollController.position.pixels >=
                         _scrollController.position.maxScrollExtent +
                             reloadMargin) {
