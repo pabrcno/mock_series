@@ -21,7 +21,11 @@ class MainShowsScreen extends StatelessWidget {
         title: const Text("Mock Series"),
       ),
       body: Container(
-          decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+          decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/main_background.png"))),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Padding(

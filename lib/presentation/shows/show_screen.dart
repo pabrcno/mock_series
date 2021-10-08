@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
+import 'package:mock_series/presentation/shows/widgets/seasons_selector.dart';
 
 class ShowScreen extends StatelessWidget {
   final Show show;
@@ -21,30 +22,13 @@ class ShowScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: Column(children: [
                     SizedBox(
-                        child: Row(children: <Widget>[
-                      const Text("Seasons"),
-                      const SizedBox(
-                        width: 28,
-                      ),
-                      DropdownButton<String>(
-                        value: "One",
-                        icon: const Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                        ),
-                        iconSize: 24,
-                        underline: Container(
-                          height: 2,
-                        ),
-                        onChanged: (String? newValue) {},
-                        items: <String>['One', 'Two', 'Free', 'Four']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      )
-                    ]))
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [Text("Episodes"), SeasonsSelector()])),
+                    const Divider(
+                      height: 1,
+                    ),
                   ]))
             ]),
           ),
