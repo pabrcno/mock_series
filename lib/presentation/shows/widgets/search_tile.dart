@@ -12,11 +12,11 @@ class SearchTile extends StatelessWidget {
         //TODO: GO TO MOVIE PAGE
       },
       child: Container(
-        margin: EdgeInsets.only(top: 1),
+        margin: const EdgeInsets.only(top: 2, right: 5, left: 5),
         padding: const EdgeInsets.only(right: 30),
         decoration: BoxDecoration(
             color: Theme.of(context).backgroundColor,
-            border: Border.all(color: Colors.white, width: 0.2)),
+            border: Border.all(color: Colors.white, width: 0.3)),
         width: MediaQuery.of(context).size.width,
         child: SizedBox(
           child: Row(
@@ -24,7 +24,7 @@ class SearchTile extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(right: 35),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 0.5),
+                  border: Border.all(color: Colors.white, width: 0.8),
                 ),
                 height: 148,
                 width: 105,
