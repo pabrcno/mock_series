@@ -12,6 +12,42 @@ class ShowScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(show.name!),
         ),
-        body: Center(child: Html(data: show.summary)));
+        body: Padding(
+          padding: EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              Html(data: show.summary),
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(children: [
+                    SizedBox(
+                        child: Row(children: <Widget>[
+                      const Text("Seasons"),
+                      const SizedBox(
+                        width: 28,
+                      ),
+                      DropdownButton<String>(
+                        value: "One",
+                        icon: const Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                        ),
+                        iconSize: 24,
+                        underline: Container(
+                          height: 2,
+                        ),
+                        onChanged: (String? newValue) {},
+                        items: <String>['One', 'Two', 'Free', 'Four']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      )
+                    ]))
+                  ]))
+            ]),
+          ),
+        ));
   }
 }
