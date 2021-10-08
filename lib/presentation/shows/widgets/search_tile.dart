@@ -8,24 +8,20 @@ class SearchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          //TODO: GO TO MOVIE PAGE
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              border: Border.all(color: Colors.white, width: 0.2)),
-          padding: const EdgeInsets.all(20),
-          width: MediaQuery.of(context).size.width,
+      onTap: () {
+        //TODO: GO TO MOVIE PAGE
+      },
+      child: Container(
+        padding: const EdgeInsets.only(right: 30),
+        decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor,
+            border: Border.all(color: Colors.white, width: 0.2)),
+        width: MediaQuery.of(context).size.width,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width - 40,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                child: Text(
-                  show.name!,
-                  style: const TextStyle(fontSize: 22),
-                ),
-              ),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.white, width: 0.5),
@@ -39,8 +35,16 @@ class SearchTile extends StatelessWidget {
                       )
                     : Text(show.name!),
               ),
+              SizedBox(
+                child: Text(
+                  show.name!,
+                  style: const TextStyle(fontSize: 22),
+                ),
+              ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
