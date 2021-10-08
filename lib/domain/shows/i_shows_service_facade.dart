@@ -10,7 +10,6 @@ abstract class IShowsServiceFacade {
       {required int page});
   Future<Either<ShowServiceFailure, List<Show>>> getShowsSearch(
       {required String search});
-  Future<Either<ShowServiceFailure, Show>> getShow({required int id});
   Future<Either<ShowServiceFailure, List<Season>>> getShowSeasons(
       {required int showId});
 

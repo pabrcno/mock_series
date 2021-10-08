@@ -22,7 +22,7 @@ class SearchTile extends StatelessWidget {
         padding: const EdgeInsets.only(right: 30),
         decoration: BoxDecoration(
             color: Theme.of(context).backgroundColor,
-            border: Border.all(color: Colors.white, width: 0.3)),
+            border: Border.all(color: Colors.white, width: 0.2)),
         width: MediaQuery.of(context).size.width,
         child: SizedBox(
           child: Row(
@@ -30,7 +30,7 @@ class SearchTile extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(right: 35),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 0.8),
+                  border: Border.all(color: Colors.white, width: 0.1),
                 ),
                 height: 148,
                 width: 105,

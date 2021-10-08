@@ -69,12 +69,6 @@ class ShowsService implements IShowsServiceFacade {
     }
   }
 
-  @override
-  Future<Either<ShowServiceFailure, Show>> getShow({required int id}) {
-    // TODO: implement getShow
-    throw UnimplementedError();
-  }
-
   ShowServiceFailure _handleError(DioError error) {
     int statusCode = error.response!.statusCode!;
     switch (statusCode) {
