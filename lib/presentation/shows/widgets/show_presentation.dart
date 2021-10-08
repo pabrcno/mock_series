@@ -62,7 +62,7 @@ class ShowPresentation extends StatelessWidget {
               width: width + 2,
               height: 50,
               decoration:
-                  const BoxDecoration(color: Color.fromRGBO(138, 90, 171, 1)),
+                  const BoxDecoration(color: Color.fromRGBO(138, 80, 171, 1)),
               child: const Center(
                   child: Icon(Icons.favorite, color: Colors.white)),
             ),
