@@ -15,10 +15,11 @@ class SearchTile extends StatelessWidget {
   Widget build(BuildContext context) {
     ShowsController showsController = Get.put(getIt<ShowsController>());
     return InkWell(
-      onTap: () {
-        showsController.setShowScreenInitialData(
+      onTap: () async {
+        await showsController.setShowScreenInitialData(
             show: show, showErrorSnackBar: showShowsSnackBar);
-        Get.to(() => ShowScreen(show: show));
+        await Get.to(() => ShowScreen(key: Key(show.name!), show: show),
+            preventDuplicates: false);
       },
       child: Container(
         margin: const EdgeInsets.only(top: 2, right: 2, left: 2),

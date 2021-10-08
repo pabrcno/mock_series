@@ -17,10 +17,49 @@ class ShowScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(children: [
-              Html(data: show.summary),
               SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 0.5),
+                      ),
+                      width: MediaQuery.of(context).size.width - 40,
+                      child: show.image != null
+                          ? InkWell(
+                              child: Hero(
+                                  tag: "${show.id}_pic",
+                                  child: Image.network(
+                                    show.image!.original!,
+                                    semanticLabel: show.name,
+                                  )))
+                          : Text(show.name!),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                                child: Column(
+                              children: [Text("Genres")],
+                            )),
+                            SizedBox(
+                                child: Column(
+                              children: [
+                                Text("Premier"),
+                                Text(show.premiered!)
+                              ],
+                            ))
+                          ]),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("SUMARY"),
+                    Html(data: show.summary),
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Row(

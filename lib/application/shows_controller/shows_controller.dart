@@ -73,6 +73,7 @@ class ShowsController extends GetxController {
   setShowScreenInitialData(
       {required Show show, required showErrorSnackBar}) async {
     isShowScreenLoading.value = true;
+
     await _setShowSeasons(
         showId: show.id, showErrorSnackBar: showErrorSnackBar);
     await appendToEpisodesBySeasonMap(

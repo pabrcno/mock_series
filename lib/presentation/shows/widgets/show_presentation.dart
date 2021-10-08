@@ -16,7 +16,7 @@ class ShowPresentation extends StatelessWidget {
     ShowsController showsController = Get.put(getIt<ShowsController>());
     return InkWell(
         child: Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(10))),
       margin: const EdgeInsets.all(10),
       child: Column(
@@ -42,15 +42,18 @@ class ShowPresentation extends StatelessWidget {
             child: show.image != null
                 ? InkWell(
                     //image
-                    onTap: () {
-                      showsController.setShowScreenInitialData(
+                    onTap: () async {
+                      await showsController.setShowScreenInitialData(
                           show: show, showErrorSnackBar: showShowsSnackBar);
-                      Get.to(() => ShowScreen(show: show));
+                      Get.to(
+                          () => ShowScreen(key: Key(show.name!), show: show));
                     },
-                    child: Image.network(
-                      show.image!.original!,
-                      semanticLabel: show.name,
-                    ))
+                    child: Hero(
+                        tag: "${show.id}_pic",
+                        child: Image.network(
+                          show.image!.original!,
+                          semanticLabel: show.name,
+                        )))
                 : Text(show.name!),
           ),
           InkWell(
