@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
+import 'package:mock_series/injection.dart';
+import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 
 class ShowPresentation extends StatelessWidget {
   final Show show;
@@ -8,6 +12,7 @@ class ShowPresentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ShowsController showsController = Get.put(getIt<ShowsController>());
     return InkWell(
         child: Container(
       margin: const EdgeInsets.all(10),
@@ -20,7 +25,7 @@ class ShowPresentation extends StatelessWidget {
               style: const TextStyle(fontSize: 20),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Container(
@@ -32,7 +37,8 @@ class ShowPresentation extends StatelessWidget {
             child: show.image != null
                 ? InkWell(
                     onTap: () {
-                      //TODO: GO TO MOVIE PAGE
+                      showsController.setShowScreenInitialData(
+                          show: show, showErrorSnackBar: showShowsSnackBar);
                     },
                     child: Image.network(
                       show.image!["medium"]!,

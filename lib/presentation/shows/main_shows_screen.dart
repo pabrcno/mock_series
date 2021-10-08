@@ -41,8 +41,7 @@ class MainShowsScreen extends StatelessWidget {
                         showsController.getMainScreenShowsList(
                             showErrorSnackBar: showShowsSnackBar);
                       }
-                      showsController.setToLoadShowList();
-                      print(showsController.toLoadShowList);
+                      showsController.appendToLoadShowList();
                     }
                   });
                   return Center(
@@ -54,7 +53,7 @@ class MainShowsScreen extends StatelessWidget {
                           ...showsController.toLoadShowList
                               .map((show) => ShowPresentation(show: show))
                               .toList(),
-                          showsController.isShowpageLoading.value
+                          showsController.isMainScreenLoading.value
                               ? const Center(
                                   child: CircularProgressIndicator(),
                                 )

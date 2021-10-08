@@ -57,9 +57,16 @@ class ShowsService implements IShowsServiceFacade {
 
   @override
   Future<Either<ShowServiceFailure, List<Episode>>> getShowSeasonEpisodes(
-      {required int seasonId}) {
-    // TODO: implement getShowSeasonEpisodes
-    throw UnimplementedError();
+      {required int seasonId}) async {
+    String pageUri = '${_apiUrl}seasons/$seasonId/episodes';
+    try {
+      var response = await dio.get(pageUri);
+      List<Episode> episodesList = [];
+      response.data.forEach((json) => episodesList.add(Episode.fromJson(json)));
+      return right(episodesList);
+    } on DioError catch (e) {
+      return left(_handleError(e));
+    }
   }
 
   @override

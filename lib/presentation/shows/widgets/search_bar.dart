@@ -30,9 +30,6 @@ class SearchBar extends StatelessWidget {
                     labelStyle:
                         TextStyle(color: Theme.of(context).primaryColor),
                   )),
-              const SizedBox(
-                height: 7,
-              ),
               Center(
                 child: Column(
                   children: [
