@@ -8,7 +8,7 @@ import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 
 class ShowPresentation extends StatelessWidget {
   final Show show;
-  static const double width = 210;
+  static const double width = 285;
   const ShowPresentation({Key? key, required this.show}) : super(key: key);
 
   @override
@@ -24,7 +24,9 @@ class ShowPresentation extends StatelessWidget {
             width: width,
             child: Text(
               show.name!,
-              style: const TextStyle(fontSize: 20),
+              style: const TextStyle(
+                fontSize: 24,
+              ),
             ),
           ),
           const SizedBox(
@@ -34,7 +36,7 @@ class ShowPresentation extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(color: Colors.white, width: 0.5),
             ),
-            height: 297,
+            height: 420,
             width: width,
             child: show.image != null
                 ? InkWell(
@@ -45,7 +47,7 @@ class ShowPresentation extends StatelessWidget {
                       Get.to(ShowScreen(show: show));
                     },
                     child: Image.network(
-                      show.image!.medium!,
+                      show.image!.original!,
                       semanticLabel: show.name,
                     ))
                 : Text(show.name!),
