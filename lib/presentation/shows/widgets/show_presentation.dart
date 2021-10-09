@@ -21,16 +21,6 @@ class ShowPresentation extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       child: Column(
         children: [
-          SizedBox(
-            //title
-            width: width,
-            child: Text(
-              show.name!,
-              style: const TextStyle(
-                fontSize: 24,
-              ),
-            ),
-          ),
           const SizedBox(
             height: 5,
           ),
@@ -66,12 +56,24 @@ class ShowPresentation extends StatelessWidget {
               //TODO: APPLY LIKE LOGIC
             },
             child: Container(
-              width: width + 2,
+              width: width + 1,
               height: 50,
-              decoration:
-                  const BoxDecoration(color: Color.fromRGBO(138, 80, 171, 1)),
-              child: const Center(
-                  child: Icon(Icons.favorite, color: Colors.white)),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Icon(Icons.favorite, color: Colors.white, size: 26),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Flexible(
+                    child: Text(show.name!,
+                        style: const TextStyle(
+                          fontSize: 18,
+                        )),
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 10),

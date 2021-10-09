@@ -99,8 +99,8 @@ class OpenSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return OpenContainer<bool>(
       transitionDuration: const Duration(milliseconds: 400),
-      closedColor: Theme.of(context).primaryColor,
-      openColor: Theme.of(context).primaryColor,
+      closedColor: Theme.of(context).backgroundColor,
+      openColor: Theme.of(context).backgroundColor,
       transitionType: transitionType,
       openBuilder: (BuildContext context, VoidCallback _) {
         return const SearchBar();
