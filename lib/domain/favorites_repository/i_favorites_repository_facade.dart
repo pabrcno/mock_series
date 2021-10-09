@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:mock_series/domain/favorites_repository/favorites_repository_failure.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
-import 'package:mock_series/domain/shows/show_service_failure.dart';
 
 abstract class IFavoritesRepositoryFacade {
-  Future<Either<ShowServiceFailure, List<Show>>> getFavoriteShows();
-  Future<Either<ShowServiceFailure, Unit>> writeFavoriteShow(
+  Future<Either<FavoritesRepositoryFailure, List<Show>>> getFavoriteShows();
+  Future<Either<FavoritesRepositoryFailure, Unit>> writeFavoriteShow(
       {required Show show});
-  Future<Either<ShowServiceFailure, Unit>> deleteFavoriteShow(
+  Future<Either<FavoritesRepositoryFailure, Unit>> deleteFavoriteShow(
       {required int showId});
 }
