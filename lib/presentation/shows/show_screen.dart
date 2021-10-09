@@ -22,6 +22,9 @@ class ShowScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(show.name!),
         backgroundColor: Theme.of(context).primaryColor,
+        actions: [
+          IconButton(icon: const Icon(Icons.favorite), onPressed: () {})
+        ],
       ),
       body: Container(
           height: MediaQuery.of(context).size.height,

@@ -28,7 +28,7 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
       {required Show show}) async {
     try {
       await _intializeRepository();
-      Map<int, Show> favorites = await _favoritesRepo.read("favorites");
+      var favorites = await _favoritesRepo.read("favorites");
       if (!favorites.containsKey(show.id)) {
         favorites[show.id] = show;
       } else {
