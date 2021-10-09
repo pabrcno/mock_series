@@ -35,27 +35,31 @@ class ShowPresentation extends StatelessWidget {
             height: 5,
           ),
           Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.white, width: 0.5),
-            ),
-            width: width,
-            child: show.image != null
-                ? InkWell(
-                    //image
-                    onTap: () async {
-                      await showsController.setShowScreenInitialData(
-                          show: show, showErrorSnackBar: showShowsSnackBar);
-                      Get.to(
-                          () => ShowScreen(key: Key(show.name!), show: show));
-                    },
-                    child: Hero(
-                        tag: "${show.id}_pic",
-                        child: Image.network(
-                          show.image!.original!,
-                          semanticLabel: show.name,
-                        )))
-                : Text(show.name!),
-          ),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white, width: 0.5),
+              ),
+              width: width,
+              child: Obx(() => InkWell(
+                  //image
+                  onTap: () async {
+                    showsController.isShowScreenLoading.value = true;
+                    await showsController.setShowScreenInitialData(
+                        show: show, showErrorSnackBar: showShowsSnackBar);
+                    Get.to(() => ShowScreen(key: Key(show.name!), show: show));
+                  },
+                  child: Stack(children: [
+                    showsController.isShowScreenLoading.value
+                        ? const Center(child: CircularProgressIndicator())
+                        : Container(),
+                    show.image != null
+                        ? Hero(
+                            tag: "${show.id}_pic",
+                            child: Image.network(
+                              show.image!.original!,
+                              semanticLabel: show.name,
+                            ))
+                        : Text(show.name!),
+                  ])))),
           InkWell(
             //add to favorites
             onTap: () {

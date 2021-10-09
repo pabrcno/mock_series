@@ -12,7 +12,10 @@ class ShowPremiereGenresRow extends StatelessWidget {
         SizedBox(
             child: Column(
           children: [
-            const Text("Genres"),
+            const Text(
+              "Genres",
+              style: TextStyle(fontSize: 18),
+            ),
             SizedBox(
                 child: Row(
               children: [
@@ -29,7 +32,10 @@ class ShowPremiereGenresRow extends StatelessWidget {
         SizedBox(
             child: Column(
           children: [
-            const Text("Premier"),
+            const Text(
+              "Premier",
+              style: TextStyle(fontSize: 18),
+            ),
             Chip(
               label: Text(show.premiered!),
               backgroundColor: Theme.of(context).primaryColor,

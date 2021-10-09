@@ -14,7 +14,10 @@ class SeasonsSelector extends StatelessWidget {
     ShowsController showsController = Get.put(getIt<ShowsController>());
     return Obx(() => SizedBox(
             child: Row(children: <Widget>[
-          const Text("Seasons"),
+          const Text(
+            "Seasons",
+            style: TextStyle(fontSize: 15),
+          ),
           const SizedBox(
             width: 28,
           ),

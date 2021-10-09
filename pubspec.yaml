@@ -36,3 +36,4 @@ flutter:
 
   assets:
     - assets/images/main_background.png
+    - assets/images/show_background.png

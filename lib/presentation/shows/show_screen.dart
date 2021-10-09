@@ -21,8 +21,14 @@ class ShowScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(show.name!),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: Padding(
+      body: Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
+              image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/show_background.png"))),
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(children: [
@@ -51,20 +57,67 @@ class ShowScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Text("SUMARY"),
-                    Html(data: show.summary),
+
+                    Center(
+                        child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        children: [
+                          const Text(
+                            "Watch it on",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ...show.schedule!.days
+                                  .map((day) => Chip(
+                                        backgroundColor: Colors.red[400],
+                                        label: Text(
+                                          '${day[0]}${day[1]}${day[2]}',
+                                          style: const TextStyle(fontSize: 15),
+                                        ),
+                                      ))
+                                  .toList()
+                            ],
+                          )
+                        ],
+                      ),
+                    )),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Chip(
+                        label: Text(
+                      'At: ${show.schedule!.time} Hs',
+                      style: const TextStyle(fontSize: 15),
+                    )),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      "SUMARY",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Html(data: show.summary, style: {
+                      "p": Style(
+                          fontSize: const FontSize(17),
+                          lineHeight: const LineHeight(1.5)),
+                    }),
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                              Text("Episodes"),
+                              Text(
+                                "Episodes",
+                                style: TextStyle(fontSize: 18),
+                              ),
                               SeasonsSelector()
                             ])),
                     const Divider(
                       height: 1,
                     ),
-
                     // ignore: prefer_const_constructors
                     EpisodesList()
                   ]))
