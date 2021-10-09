@@ -20,6 +20,13 @@ class MainShowsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: const Text("Mock Series"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {},
+            color: Colors.red,
+          )
+        ],
       ),
       body: Container(
           decoration: BoxDecoration(
