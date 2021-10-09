@@ -24,6 +24,7 @@ class ShowScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Container(
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
               image: const DecorationImage(

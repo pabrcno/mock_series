@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/domain/shows/models/episode.dart';
-import 'package:mock_series/injection.dart';
+
+import '../episode_screen.dart';
 
 class EpisodeTile extends StatelessWidget {
   final Episode episode;
@@ -10,11 +10,12 @@ class EpisodeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ShowsController showsController = Get.put(getIt<ShowsController>());
     return InkWell(
       onTap: () async {
-        // await Get.to(() => ShowScreen(key: Key(show.name!), show: show),
-        //     preventDuplicates: false);
+        await Get.to(
+            () => EpisodeScreen(
+                key: Key('${episode.name!}${episode.id}'), episode: episode),
+            preventDuplicates: false);
       },
       child: SizedBox(
         height: 60,

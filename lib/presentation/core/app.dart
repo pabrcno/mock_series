@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Colors.white,
         ),
-        primaryColor: const Color.fromRGBO(128, 114, 160, 1),
+        primaryColor: const Color.fromRGBO(118, 104, 150, 1),
         backgroundColor: const Color.fromRGBO(43, 44, 67, 1),
       ),
       home: const MainShowsScreen(),
