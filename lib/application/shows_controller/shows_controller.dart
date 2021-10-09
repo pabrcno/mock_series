@@ -28,6 +28,14 @@ class ShowsController extends GetxController {
       <int, List<Episode>>{}.obs;
   ShowsController(this._showsService);
 
+  final Rx<Season> selectedSeason = Rx(const Season(
+    id: 0,
+    name: '',
+    number: 1,
+    url: '',
+  ));
+  final RxList<Episode> selectedSeasonEpisodes = <Episode>[].obs;
+
   initializeShowLists({required showErrorSnackBar}) async {
     await getMainScreenShowsList(showErrorSnackBar: showErrorSnackBar);
     appendToLoadShowList();
@@ -76,8 +84,10 @@ class ShowsController extends GetxController {
 
     await _setShowSeasons(
         showId: show.id, showErrorSnackBar: showErrorSnackBar);
-    await appendToEpisodesBySeasonMap(
-        seasonId: showSeasonsList[0].id!, showErrorSnackBar: showErrorSnackBar);
+    for (Season season in showSeasonsList) {
+      await appendToEpisodesBySeasonMap(
+          seasonId: season.id!, showErrorSnackBar: showErrorSnackBar);
+    }
     isShowScreenLoading.value = false;
   }
 
@@ -101,5 +111,14 @@ class ShowsController extends GetxController {
         (episodesList) {
       episodesBySeasonMap[seasonId] = episodesList;
     });
+  }
+
+  restartSelectedSeason() {
+    selectedSeason.value = showSeasonsList[0];
+    setSelectedSeasonEpisodes(selectedSeasonId: selectedSeason.value.id!);
+  }
+
+  setSelectedSeasonEpisodes({required int selectedSeasonId}) {
+    selectedSeasonEpisodes.value = episodesBySeasonMap[selectedSeasonId]!;
   }
 }

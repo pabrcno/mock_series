@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:get/get.dart';
+import 'package:mock_series/application/shows_controller/shows_controller.dart';
+
 import 'package:mock_series/domain/shows/models/show.dart';
+import 'package:mock_series/injection.dart';
+
+import 'package:mock_series/presentation/shows/widgets/episodes_list.dart';
 import 'package:mock_series/presentation/shows/widgets/seasons_selector.dart';
+import 'package:mock_series/presentation/shows/widgets/show_premiere_genres_row.dart';
 
 class ShowScreen extends StatelessWidget {
   final Show show;
@@ -9,11 +16,13 @@ class ShowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ShowsController showsController = Get.put(getIt<ShowsController>());
+    showsController.restartSelectedSeason();
     return Scaffold(
-        appBar: AppBar(
-          title: Text(show.name!),
-        ),
-        body: Padding(
+      appBar: AppBar(
+        title: Text(show.name!),
+      ),
+      body: Padding(
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(children: [
@@ -38,27 +47,11 @@ class ShowScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                                child: Column(
-                              children: [Text("Genres")],
-                            )),
-                            SizedBox(
-                                child: Column(
-                              children: [
-                                Text("Premier"),
-                                Text(show.premiered!)
-                              ],
-                            ))
-                          ]),
-                    ),
+                    ShowPremiereGenresRow(show: show),
                     const SizedBox(
                       height: 20,
                     ),
-                    Text("SUMARY"),
+                    const Text("SUMARY"),
                     Html(data: show.summary),
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -71,9 +64,12 @@ class ShowScreen extends StatelessWidget {
                     const Divider(
                       height: 1,
                     ),
+
+                    // ignore: prefer_const_constructors
+                    EpisodesList()
                   ]))
             ]),
-          ),
-        ));
+          )),
+    );
   }
 }
