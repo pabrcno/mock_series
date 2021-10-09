@@ -23,8 +23,9 @@ class FavoritesController extends GetxController {
     Either<FavoritesRepositoryFailure, Unit> addFavoriteOption =
         await _favoritesRepo.writeFavoriteShow(show: show);
 
-    addFavoriteOption.fold(
-        (l) => print("FAILED FAVORITE ADDED"), (_) => print("FAVORITE ADDED"));
+    addFavoriteOption.fold((l) => print("FAILED FAVORITE ADDED"), (_) async {
+      await setFavoritesList();
+    });
   }
 
   deleteFavoriteShow({required int showId}) async {

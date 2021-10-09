@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
+import 'package:mock_series/presentation/shows/favorites_screen.dart';
 import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 import '../../injection.dart';
@@ -23,7 +24,9 @@ class MainShowsScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.favorite),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => const FavoritesScreen());
+            },
             color: Colors.red,
           )
         ],
