@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:mock_series/domain/shows/models/season.dart';
 import 'package:mock_series/domain/shows/show_service_failure.dart';
-
 import 'models/episode.dart';
 import 'models/show.dart';
 
