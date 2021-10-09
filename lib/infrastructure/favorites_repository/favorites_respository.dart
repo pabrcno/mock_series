@@ -9,14 +9,12 @@ import 'package:mock_series/domain/shows/models/show.dart';
 @LazySingleton(as: IFavoritesRepositoryFacade)
 class FavoritesRepository extends IFavoritesRepositoryFacade {
   final _favoritesRepo = GetStorage();
-  FavoritesRepository() {
-    _intializeRepository();
-  }
 
   Future<Either<FavoritesRepositoryFailure, Unit>>
       _intializeRepository() async {
     try {
-      if (!_favoritesRepo.read("favorites")) {
+      var favs = await _favoritesRepo.read("favorites");
+      if (favs == null) {
         await _favoritesRepo.write("favorites", <int, Show>{});
       }
       return (right(unit));
@@ -29,6 +27,7 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
   Future<Either<FavoritesRepositoryFailure, Unit>> writeFavoriteShow(
       {required Show show}) async {
     try {
+      await _intializeRepository();
       Map<int, Show> favorites = await _favoritesRepo.read("favorites");
       if (!favorites.containsKey(show.id)) {
         favorites[show.id] = show;
@@ -49,6 +48,7 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
   Future<Either<FavoritesRepositoryFailure, List<Show>>>
       getFavoriteShows() async {
     try {
+      await _intializeRepository();
       Map<int, Show> favorites = await _favoritesRepo.read("favorites");
       List<Show> favoritesList =
           favorites.values.map((Show show) => show).toList();
@@ -68,6 +68,7 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
   Future<Either<FavoritesRepositoryFailure, Unit>> deleteFavoriteShow(
       {required int showId}) async {
     try {
+      await _intializeRepository();
       Map<int, Show> favorites = await _favoritesRepo.read("favorites");
       if (!favorites.containsKey(showId)) {
         favorites.remove(showId);

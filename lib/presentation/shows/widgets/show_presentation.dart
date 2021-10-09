@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mock_series/application/favorites_controller/favorites_controller.dart';
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/injection.dart';
@@ -14,6 +15,8 @@ class ShowPresentation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ShowsController showsController = Get.put(getIt<ShowsController>());
+    FavoritesController favoritesController =
+        Get.put(getIt<FavoritesController>());
     return InkWell(
         child: Container(
       decoration: const BoxDecoration(
@@ -53,7 +56,7 @@ class ShowPresentation extends StatelessWidget {
           InkWell(
             //add to favorites
             onTap: () {
-              //TODO: APPLY LIKE LOGIC
+              favoritesController.addFavorite(show: show);
             },
             child: Container(
               width: width + 1,
@@ -62,16 +65,16 @@ class ShowPresentation extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Icon(Icons.favorite, color: Colors.white, size: 26),
-                  const SizedBox(
-                    width: 20,
-                  ),
                   Flexible(
                     child: Text(show.name!,
                         style: const TextStyle(
                           fontSize: 18,
                         )),
                   ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  const Icon(Icons.favorite, color: Colors.white, size: 26),
                 ],
               ),
             ),

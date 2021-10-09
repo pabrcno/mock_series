@@ -7,6 +7,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import 'application/favorites_controller/favorites_controller.dart' as _i8;
 import 'application/shows_controller/shows_controller.dart' as _i7;
 import 'domain/favorites_repository/i_favorites_repository_facade.dart' as _i3;
 import 'domain/shows/i_shows_service_facade.dart' as _i5;
@@ -24,5 +25,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i5.IShowsServiceFacade>(() => _i6.ShowsService());
   gh.factory<_i7.ShowsController>(
       () => _i7.ShowsController(get<_i5.IShowsServiceFacade>()));
+  gh.factory<_i8.FavoritesController>(
+      () => _i8.FavoritesController(get<_i3.IFavoritesRepositoryFacade>()));
   return get;
 }

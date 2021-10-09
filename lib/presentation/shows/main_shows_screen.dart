@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
