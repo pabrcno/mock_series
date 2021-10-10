@@ -17,16 +17,19 @@ class ShowPremiereGenresRow extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(
-                child: Row(
-              children: [
-                ...show.genres!
-                    .map((genre) => Chip(
-                          label: Text(genre),
-                          backgroundColor: Theme.of(context).backgroundColor,
-                        ))
-                    .toList()
-              ],
-            ))
+                width: MediaQuery.of(context).size.width / 2,
+                child: Wrap(
+                  direction: Axis.horizontal,
+                  children: [
+                    ...show.genres!
+                        .map((genre) => Chip(
+                              label: Text(genre),
+                              backgroundColor:
+                                  Theme.of(context).backgroundColor,
+                            ))
+                        .toList()
+                  ],
+                ))
           ],
         )),
         SizedBox(
