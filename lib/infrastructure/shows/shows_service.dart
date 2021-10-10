@@ -70,7 +70,7 @@ class ShowsService implements IShowsServiceFacade {
   }
 
   ShowServiceFailure _handleError(DioError error) {
-    if (error.response == null) {
+    if (error.response == null || error.message.contains("Http status error")) {
       return const ShowServiceFailure.timeout();
     }
     int statusCode = error.response!.statusCode!;
