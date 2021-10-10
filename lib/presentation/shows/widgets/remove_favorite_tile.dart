@@ -22,8 +22,8 @@ class RemoveFavoriteTile extends StatelessWidget {
         await favoritesController.deleteFavorite(showId: show.id);
       },
       child: Container(
-        width: width + 1,
-        height: 50,
+        width: width,
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(color: Theme.of(context).primaryColor),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

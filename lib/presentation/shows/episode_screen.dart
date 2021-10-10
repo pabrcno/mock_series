@@ -49,8 +49,7 @@ class EpisodeScreen extends StatelessWidget {
                             Chip(
                               label: Text("Season ${episode.season}",
                                   style: const TextStyle(fontSize: 18)),
-                              backgroundColor:
-                                  Theme.of(context).backgroundColor,
+                              backgroundColor: Theme.of(context).primaryColor,
                             ),
                             Chip(
                               label: Text("Episode ${episode.number}",

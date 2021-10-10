@@ -82,7 +82,8 @@ class ShowScreen extends StatelessWidget {
                                   style: TextStyle(fontSize: 18),
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     ...show.schedule!.days
                                         .map((day) => Chip(
