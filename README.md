@@ -94,10 +94,10 @@ Install the android Android Apk from the <a href="https://github.com/pabrcno/moc
 
 <!-- CONTACT -->
 
-## Contact
-
-Paulo Briceño - [@paulobricenog](https://twitter.com/paulobricenog) - pabrcn@gmail.com
+## Get to know me better 🚀
 
 <a href="https://pabrcno.github.io/portfolio/">Portfolio</a>
+
+Paulo Briceño - [@paulobricenog](https://twitter.com/paulobricenog) - pabrcn@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
