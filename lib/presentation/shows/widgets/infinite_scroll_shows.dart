@@ -5,6 +5,7 @@ import 'package:mock_series/injection.dart';
 import 'package:mock_series/presentation/shows/widgets/add_favorite_tile.dart';
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 
+// ignore: must_be_immutable
 class InfiniteScrollShows extends StatelessWidget {
   ShowsController showsController = Get.put(getIt<ShowsController>());
   InfiniteScrollShows({Key? key}) : super(key: key);
