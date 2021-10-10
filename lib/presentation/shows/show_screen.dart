@@ -5,6 +5,7 @@ import 'package:mock_series/application/shows_controller/shows_controller.dart';
 
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/injection.dart';
+import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 
 import 'package:mock_series/presentation/shows/widgets/episodes_list.dart';
 import 'package:mock_series/presentation/shows/widgets/seasons_selector.dart';
@@ -17,16 +18,18 @@ class ShowScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ShowsController showsController = Get.put(getIt<ShowsController>());
-    showsController.restartSelectedSeason();
+    showsController.setShowScreenInitialData(
+        show: show, showErrorSnackBar: showShowsSnackBar);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(show.name!),
-        backgroundColor: Theme.of(context).primaryColor,
-        actions: [
-          IconButton(icon: const Icon(Icons.favorite), onPressed: () {})
-        ],
-      ),
-      body: Container(
+        appBar: AppBar(
+          title: Text(show.name!),
+          backgroundColor: Theme.of(context).primaryColor,
+          actions: [
+            IconButton(icon: const Icon(Icons.favorite), onPressed: () {})
+          ],
+        ),
+        body: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
@@ -34,97 +37,104 @@ class ShowScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                   image: AssetImage("assets/images/show_background.png"))),
           padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width,
+          child: Obx(() => showsController.isShowScreenLoading.value
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SingleChildScrollView(
                   child: Column(children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 0.5),
-                      ),
-                      width: MediaQuery.of(context).size.width - 40,
-                      child: show.image != null
-                          ? InkWell(
-                              child: Image.network(
-                              show.image!.original!,
-                              semanticLabel: show.name,
-                            ))
-                          : Text(show.name!),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ShowPremiereGenresRow(show: show),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    Center(
-                        child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Watch it on",
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ...show.schedule!.days
-                                  .map((day) => Chip(
-                                        backgroundColor: Colors.red[400],
-                                        label: Text(
-                                          '${day[0]}${day[1]}${day[2]}',
-                                          style: const TextStyle(fontSize: 15),
-                                        ),
-                                      ))
-                                  .toList()
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Chip(
-                        label: Text(
-                      'At: ${show.schedule!.time} Hs',
-                      style: const TextStyle(fontSize: 15),
-                    )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "SUMARY",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Html(data: show.summary, style: {
-                      "p": Style(
-                          fontSize: const FontSize(17),
-                          lineHeight: const LineHeight(1.5)),
-                    }),
                     SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                "Episodes",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              SeasonsSelector()
-                            ])),
-                    const Divider(
-                      height: 1,
-                    ),
-                    // ignore: prefer_const_constructors
-                    EpisodesList()
-                  ]))
-            ]),
-          )),
-    );
+                        child: Column(children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.white, width: 0.5),
+                            ),
+                            width: MediaQuery.of(context).size.width - 40,
+                            child: show.image != null
+                                ? InkWell(
+                                    child: Image.network(
+                                    show.image!.original!,
+                                    semanticLabel: show.name,
+                                  ))
+                                : Text(show.name!),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ShowPremiereGenresRow(show: show),
+                          const SizedBox(
+                            height: 20,
+                          ),
+
+                          Center(
+                              child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              children: [
+                                const Text(
+                                  "Watch it on",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ...show.schedule!.days
+                                        .map((day) => Chip(
+                                              backgroundColor: Colors.red[400],
+                                              label: Text(
+                                                '${day[0]}${day[1]}${day[2]}',
+                                                style: const TextStyle(
+                                                    fontSize: 15),
+                                              ),
+                                            ))
+                                        .toList()
+                                  ],
+                                )
+                              ],
+                            ),
+                          )),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Chip(
+                              label: Text(
+                            'At: ${show.schedule!.time} Hs',
+                            style: const TextStyle(fontSize: 15),
+                          )),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "SUMARY",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Html(data: show.summary, style: {
+                            "p": Style(
+                                fontSize: const FontSize(17),
+                                lineHeight: const LineHeight(1.5)),
+                          }),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Text(
+                                      "Episodes",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    SeasonsSelector()
+                                  ])),
+                          const Divider(
+                            height: 1,
+                          ),
+                          // ignore: prefer_const_constructors
+                          EpisodesList()
+                        ]))
+                  ]),
+                )),
+        ));
   }
 }

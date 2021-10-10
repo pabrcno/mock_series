@@ -32,26 +32,19 @@ class ShowPresentation extends StatelessWidget {
                 border: Border.all(color: Colors.white, width: 0.5),
               ),
               width: width,
-              child: Obx(() => InkWell(
-                  //image
-                  onTap: () async {
-                    showsController.isShowScreenLoading.value = true;
-                    await showsController.setShowScreenInitialData(
-                        show: show, showErrorSnackBar: showShowsSnackBar);
-                    Get.to(() => ShowScreen(key: Key(show.name!), show: show));
-                  },
-                  child: Stack(children: [
-                    showsController.isShowScreenLoading.value
-                        ? const Center(child: CircularProgressIndicator())
-                        : Container(),
-                    show.image != null
-                        ? Image.network(
-                            show.image!.original!,
-                            semanticLabel: show.name,
-                            cacheWidth: 350,
-                          )
-                        : Text(show.name!),
-                  ])))),
+              child: InkWell(
+                //image
+                onTap: () async {
+                  Get.to(() => ShowScreen(key: Key(show.name!), show: show));
+                },
+                child: show.image != null
+                    ? Image.network(
+                        show.image!.original!,
+                        semanticLabel: show.name,
+                        cacheWidth: 350,
+                      )
+                    : Text(show.name!),
+              )),
           InkWell(
             //add to favorites
             onTap: () {

@@ -70,6 +70,9 @@ class ShowsService implements IShowsServiceFacade {
   }
 
   ShowServiceFailure _handleError(DioError error) {
+    if (error.response == null) {
+      return const ShowServiceFailure.timeout();
+    }
     int statusCode = error.response!.statusCode!;
     switch (statusCode) {
       case 401:
