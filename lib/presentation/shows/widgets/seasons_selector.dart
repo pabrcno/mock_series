@@ -13,38 +13,47 @@ class SeasonsSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => SizedBox(
-            child: Row(children: <Widget>[
+    return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           const Text(
-            "Seasons",
-            style: TextStyle(fontSize: 15),
+            "Episodes",
+            style: TextStyle(fontSize: 18),
           ),
-          const SizedBox(
-            width: 28,
-          ),
-          DropdownButton<String>(
-            value: "${showsController.selectedSeason.value.number}",
-            icon: const Icon(
-              Icons.keyboard_arrow_down_rounded,
-            ),
-            iconSize: 24,
-            underline: Container(
-              height: 2,
-            ),
-            onChanged: (String? newValue) {},
-            items: showsController.showSeasonsList
-                .map<DropdownMenuItem<String>>((Season season) {
-              return DropdownMenuItem<String>(
-                onTap: () {
-                  showsController.selectedSeason.value = season;
-                  showsController.setSelectedSeasonEpisodes(
-                      selectedSeasonId: season.id!);
-                },
-                value: "${season.number}",
-                child: Text("${season.number}"),
-              );
-            }).toList(),
-          )
-        ])));
+          Obx(() => SizedBox(
+                  child: Row(children: <Widget>[
+                const Text(
+                  "Seasons",
+                  style: TextStyle(fontSize: 15),
+                ),
+                const SizedBox(
+                  width: 28,
+                ),
+                DropdownButton<String>(
+                  value: "${showsController.selectedSeason.value.number}",
+                  icon: const Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                  ),
+                  iconSize: 24,
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? newValue) {},
+                  items: showsController.showSeasonsList
+                      .map<DropdownMenuItem<String>>((Season season) {
+                    return DropdownMenuItem<String>(
+                      onTap: () {
+                        showsController.selectedSeason.value = season;
+                        showsController.setSelectedSeasonEpisodes(
+                            selectedSeasonId: season.id!);
+                      },
+                      value: "${season.number}",
+                      child: Text("${season.number}"),
+                    );
+                  }).toList(),
+                ),
+              ])))
+        ]));
   }
 }
