@@ -3,7 +3,7 @@ import 'package:mock_series/domain/favorites_repository/favorites_repository_fai
 import 'package:mock_series/domain/shows/models/show.dart';
 
 abstract class IFavoritesRepositoryFacade {
-  Future<Either<FavoritesRepositoryFailure, List<Show>>> getFavoriteShows();
+  List<Show> getFavoriteShows();
   Future<Either<FavoritesRepositoryFailure, Unit>> writeFavoriteShow(
       {required Show show});
   Future<Either<FavoritesRepositoryFailure, Unit>> deleteFavoriteShow(

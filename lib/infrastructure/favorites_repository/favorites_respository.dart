@@ -47,25 +47,18 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
   }
 
   @override
-  Future<Either<FavoritesRepositoryFailure, List<Show>>>
-      getFavoriteShows() async {
-    try {
-      await _intializeRepository();
-      var favorites = _favoritesRepo.read<Map<String, dynamic>>("favorites")!;
-
+  List<Show> getFavoriteShows() {
+    var favorites = _favoritesRepo.read<Map<String, dynamic>>("favorites");
+    if (favorites != null) {
       List<Show> favoritesList = favorites.values
           .map((element) => Show.fromJson(Map.from(json.decode(element))))
           .toList();
       favoritesList.sort((Show a, Show b) {
         return a.name!.compareTo(b.name!);
       });
-      return (right(favoritesList));
-    } on Exception catch (e) {
-      if (e == Exception("Show already in favorites")) {
-        return (left(const FavoritesRepositoryFailure.unableToUpdate()));
-      }
-      return (left(const FavoritesRepositoryFailure.unexpected()));
+      return (favoritesList);
     }
+    return ([]);
   }
 
   @override

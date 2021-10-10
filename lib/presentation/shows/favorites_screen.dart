@@ -13,11 +13,11 @@ class FavoritesScreen extends StatelessWidget {
         Get.put(getIt<FavoritesController>());
     favoritesController.setFavoritesList();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: const Text("Favorites"),
-      ),
-      body: Container(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          title: const Text("Favorites"),
+        ),
+        body: Container(
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
               image: const DecorationImage(
@@ -34,12 +34,12 @@ class FavoritesScreen extends StatelessWidget {
                       : SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: SingleChildScrollView(
-                              child: Column(children: [
-                            ...favoritesController.favoritesList
-                                .map((show) => ShowPresentation(show: show))
-                                .toList()
-                          ])),
-                        )))),
-    );
+                              child: Column(
+                                  children: favoritesController.favoritesList
+                                      .map((show) =>
+                                          ShowPresentation(show: show))
+                                      .toList())),
+                        ))),
+        ));
   }
 }
