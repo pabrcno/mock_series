@@ -7,6 +7,7 @@ import 'package:mock_series/presentation/shows/favorites_screen.dart';
 import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 import '../../injection.dart';
+import 'widgets/add_favorite_tile.dart';
 import 'widgets/search_bar.dart';
 
 class MainShowsScreen extends StatelessWidget {
@@ -66,7 +67,12 @@ class MainShowsScreen extends StatelessWidget {
                         controller: _scrollController,
                         child: Column(children: [
                           ...showsController.toLoadShowList
-                              .map((show) => ShowPresentation(show: show))
+                              .map((show) => ShowPresentation(
+                                    show: show,
+                                    actionTile: AddFavoriteTile(
+                                      show: show,
+                                    ),
+                                  ))
                               .toList(),
                           showsController.isMainScreenLoading.value
                               ? const Center(

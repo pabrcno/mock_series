@@ -16,8 +16,6 @@ class SearchTile extends StatelessWidget {
     ShowsController showsController = Get.put(getIt<ShowsController>());
     return InkWell(
       onTap: () async {
-        await showsController.setShowScreenInitialData(
-            show: show, showErrorSnackBar: showShowsSnackBar);
         await Get.to(() => ShowScreen(key: Key(show.name!), show: show),
             preventDuplicates: false);
       },

@@ -37,7 +37,7 @@ class ShowPremiereGenresRow extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             Chip(
-              label: Text(show.premiered!),
+              label: Text("${show.premiered}"),
               backgroundColor: Theme.of(context).primaryColor,
             )
           ],

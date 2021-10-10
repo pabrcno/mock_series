@@ -57,6 +57,10 @@ class ShowScreen extends StatelessWidget {
                                     child: Image.network(
                                     show.image!.original!,
                                     semanticLabel: show.name,
+                                    errorBuilder: (context, exception,
+                                            stackTrack) =>
+                                        Image.asset(
+                                            "assets/images/placeholder.png"),
                                   ))
                                 : Text(show.name!),
                           ),

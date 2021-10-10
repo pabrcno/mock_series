@@ -25,11 +25,14 @@ class FavoritesController extends GetxController {
     });
   }
 
-  deleteFavoriteShow({required int showId}) async {
+  deleteFavorite({required int showId}) async {
     Either<FavoritesRepositoryFailure, Unit> removeFavoriteOption =
         await _favoritesRepo.deleteFavoriteShow(showId: showId);
 
-    removeFavoriteOption.fold((l) => print("FAILED FAVORITE REMOVED"),
-        (_) => print("FAVORITE REMOVED"));
+    removeFavoriteOption.fold(
+        (l) => print("FAILED FAVORITE REMOVED"),
+        (_) => (_) async {
+              await setFavoritesList();
+            });
   }
 }

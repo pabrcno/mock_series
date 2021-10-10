@@ -9,14 +9,15 @@ import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 
 class ShowPresentation extends StatelessWidget {
   final Show show;
+  final Widget actionTile;
   static const double width = 285;
-  const ShowPresentation({Key? key, required this.show}) : super(key: key);
+
+  const ShowPresentation(
+      {Key? key, required this.show, required this.actionTile})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ShowsController showsController = Get.put(getIt<ShowsController>());
-    FavoritesController favoritesController =
-        Get.put(getIt<FavoritesController>());
     return InkWell(
         child: Container(
       decoration: const BoxDecoration(
@@ -42,35 +43,12 @@ class ShowPresentation extends StatelessWidget {
                         show.image!.original!,
                         semanticLabel: show.name,
                         cacheWidth: 350,
+                        errorBuilder: (context, exception, stackTrack) =>
+                            Image.asset("assets/images/placeholder.png"),
                       )
                     : Text(show.name!),
               )),
-          InkWell(
-            //add to favorites
-            onTap: () {
-              favoritesController.addFavorite(show: show);
-            },
-            child: Container(
-              width: width + 1,
-              height: 50,
-              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Flexible(
-                    child: Text(show.name!,
-                        style: const TextStyle(
-                          fontSize: 18,
-                        )),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const Icon(Icons.favorite, color: Colors.white, size: 26),
-                ],
-              ),
-            ),
-          ),
+          actionTile,
           const SizedBox(height: 10),
         ],
       ),

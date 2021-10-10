@@ -31,7 +31,7 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
     try {
       await _intializeRepository();
       var favorites = _favoritesRepo.read<Map<String, dynamic>>("favorites");
-      if (!favorites!.containsKey(show.id)) {
+      if (!favorites!.containsKey("${show.id}")) {
         favorites["${show.id}"] = json.encode(show.toJson());
       } else {
         throw Exception("Show already in favorites");
@@ -66,10 +66,10 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
       {required int showId}) async {
     try {
       await _intializeRepository();
-      Map<int, Show>? favorites =
-          _favoritesRepo.read<Map<int, Show>>("favorites");
-      if (!favorites!.containsKey(showId)) {
-        favorites.remove(showId);
+      var favorites = _favoritesRepo.read<Map<String, dynamic>>("favorites");
+
+      if (favorites!.containsKey("$showId")) {
+        favorites.remove("$showId");
       } else {
         throw Exception("Show not in favorites");
       }
