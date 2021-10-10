@@ -33,10 +33,11 @@ class EpisodeScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width - 40,
                       child: episode.image != null
                           ? InkWell(
-                              child: Image.network(
-                              episode.image!.original!,
-                              semanticLabel: episode.name,
-                            ))
+                              child: FadeInImage.assetNetwork(
+                                  placeholder:
+                                      "assets/images/transparent_picture.png",
+                                  image: episode.image!.original!,
+                                  width: MediaQuery.of(context).size.width))
                           : Container(),
                     ),
                     const SizedBox(

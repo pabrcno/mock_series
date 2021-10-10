@@ -24,10 +24,7 @@ class ShowPresentation extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 0.5),
-              ),
+          SizedBox(
               width: width,
               child: InkWell(
                 //image
@@ -35,12 +32,9 @@ class ShowPresentation extends StatelessWidget {
                   Get.to(() => ShowScreen(key: Key(show.name!), show: show));
                 },
                 child: show.image != null
-                    ? Image.network(
-                        show.image!.original!,
-                        semanticLabel: show.name,
-                        cacheWidth: 350,
-                        errorBuilder: (context, exception, stackTrack) =>
-                            Image.asset("assets/images/placeholder.png"),
+                    ? FadeInImage.assetNetwork(
+                        placeholder: "assets/images/transparent_picture.png",
+                        image: show.image!.original!,
                       )
                     : Text(show.name!),
               )),

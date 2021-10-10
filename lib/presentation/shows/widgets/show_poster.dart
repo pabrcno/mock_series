@@ -7,18 +7,13 @@ class ShowPoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.white, width: 0.5),
-      ),
+    return SizedBox(
       width: MediaQuery.of(context).size.width - 40,
       child: show.image != null
           ? InkWell(
-              child: Image.network(
-              show.image!.original!,
-              semanticLabel: show.name,
-              errorBuilder: (context, exception, stackTrack) =>
-                  Image.asset("assets/images/placeholder.png"),
+              child: FadeInImage.assetNetwork(
+              placeholder: "assets/images/transparent_picture.png",
+              image: show.image!.original!,
             ))
           : Text(show.name!),
     );
