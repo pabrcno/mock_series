@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
+import 'package:mock_series/application/favorites_controller/favorites_controller.dart';
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 
 import 'package:mock_series/domain/shows/models/show.dart';
@@ -13,6 +14,8 @@ import 'package:mock_series/presentation/shows/widgets/show_premiere_genres_row.
 // ignore: must_be_immutable
 class ShowScreen extends StatelessWidget {
   ShowsController showsController = Get.put(getIt<ShowsController>());
+  FavoritesController favoritesController =
+      Get.put(getIt<FavoritesController>());
   final Show show;
   ShowScreen({Key? key, required this.show}) : super(key: key);
 
@@ -25,7 +28,11 @@ class ShowScreen extends StatelessWidget {
           title: Text(show.name!),
           backgroundColor: Theme.of(context).primaryColor,
           actions: [
-            IconButton(icon: const Icon(Icons.favorite), onPressed: () {})
+            IconButton(
+                icon: const Icon(Icons.favorite),
+                onPressed: () {
+                  favoritesController.addFavorite(show: show);
+                })
           ],
         ),
         body: Container(

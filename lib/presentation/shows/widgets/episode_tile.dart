@@ -18,7 +18,7 @@ class EpisodeTile extends StatelessWidget {
             preventDuplicates: false);
       },
       child: SizedBox(
-        height: 60,
+        height: 80,
         width: MediaQuery.of(context).size.width,
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
