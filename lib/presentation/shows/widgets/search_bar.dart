@@ -6,9 +6,8 @@ import 'package:mock_series/injection.dart';
 
 import 'package:mock_series/presentation/shows/widgets/search_tile.dart';
 
-// ignore: must_be_immutable
 class SearchBar extends StatelessWidget {
-  ShowsController showsController = Get.put(getIt<ShowsController>());
+  final ShowsController showsController = Get.put(getIt<ShowsController>());
   SearchBar({Key? key}) : super(key: key);
 
   @override

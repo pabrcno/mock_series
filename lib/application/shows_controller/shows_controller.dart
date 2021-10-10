@@ -50,12 +50,11 @@ class ShowsController extends GetxController {
     Either<ShowServiceFailure, List<Show>> showListOption =
         await _showsService.getShowsPage(page: showPageIndex.value);
     isMainScreenLoading.value = false;
-    showListOption.fold(
-        (f) => showShowsSnackBar(f),
-        // ignore: avoid_function_literals_in_foreach_calls
-        (showsList) => showsList.forEach((element) {
-              memoryShowList.add(element);
-            }));
+    showListOption.fold((f) => showShowsSnackBar(f), (showsList) {
+      for (var element in showsList) {
+        memoryShowList.add(element);
+      }
+    });
   }
 
   appendToLoadShowList() {
@@ -74,9 +73,7 @@ class ShowsController extends GetxController {
     Either<ShowServiceFailure, List<Show>> showListOption =
         await _showsService.getShowsSearch(search: search);
     isSearchLoading.value = false;
-    showListOption.fold(
-        (f) => showShowsSnackBar(f),
-        // ignore: avoid_function_literals_in_foreach_calls
+    showListOption.fold((f) => showShowsSnackBar(f),
         (showsList) => searchShowList.value = showsList);
   }
 
@@ -94,9 +91,7 @@ class ShowsController extends GetxController {
     Either<ShowServiceFailure, List<Season>> seasonsListOption =
         await _showsService.getShowSeasons(showId: showId);
 
-    seasonsListOption.fold(
-        (f) => showShowsSnackBar(f),
-        // ignore: avoid_function_literals_in_foreach_calls
+    seasonsListOption.fold((f) => showShowsSnackBar(f),
         (seasonsList) => showSeasonsList.value = seasonsList);
   }
 
@@ -104,9 +99,7 @@ class ShowsController extends GetxController {
     Either<ShowServiceFailure, List<Episode>> episodesListOption =
         await _showsService.getShowSeasonEpisodes(seasonId: seasonId);
 
-    episodesListOption.fold((f) => showShowsSnackBar(f),
-        // ignore: avoid_function_literals_in_foreach_calls
-        (episodesList) {
+    episodesListOption.fold((f) => showShowsSnackBar(f), (episodesList) {
       episodesBySeasonMap[seasonId] = episodesList;
     });
   }

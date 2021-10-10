@@ -4,11 +4,10 @@ import 'package:mock_series/application/favorites_controller/favorites_controlle
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/injection.dart';
 
-// ignore: must_be_immutable
 class RemoveFavoriteTile extends StatelessWidget {
   final double width = 285;
   final Show show;
-  FavoritesController favoritesController =
+  final FavoritesController favoritesController =
       Get.put(getIt<FavoritesController>());
   RemoveFavoriteTile({
     Key? key,

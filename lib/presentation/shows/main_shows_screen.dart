@@ -7,9 +7,8 @@ import 'package:mock_series/presentation/shows/widgets/infinite_scroll_shows.dar
 import '../../injection.dart';
 import 'widgets/search_bar.dart';
 
-// ignore: must_be_immutable
 class MainShowsScreen extends StatelessWidget {
-  ShowsController showsController = Get.put(getIt<ShowsController>());
+  final ShowsController showsController = Get.put(getIt<ShowsController>());
   MainShowsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

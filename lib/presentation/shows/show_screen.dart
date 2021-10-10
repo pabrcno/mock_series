@@ -9,10 +9,9 @@ import 'package:mock_series/presentation/shows/widgets/seasons_selector.dart';
 import 'package:mock_series/presentation/shows/widgets/show_info_section.dart';
 import 'package:mock_series/presentation/shows/widgets/show_poster.dart';
 
-// ignore: must_be_immutable
 class ShowScreen extends StatelessWidget {
-  ShowsController showsController = Get.put(getIt<ShowsController>());
-  FavoritesController favoritesController =
+  final ShowsController showsController = Get.put(getIt<ShowsController>());
+  final FavoritesController favoritesController =
       Get.put(getIt<FavoritesController>());
   final Show show;
   ShowScreen({Key? key, required this.show}) : super(key: key);
