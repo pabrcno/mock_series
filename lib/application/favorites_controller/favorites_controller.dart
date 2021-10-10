@@ -11,6 +11,11 @@ class FavoritesController extends GetxController {
   RxList<Show> favoritesList = <Show>[].obs;
 
   FavoritesController(this._favoritesRepo);
+  @override
+  onInit() {
+    super.onInit();
+    setFavoritesList();
+  }
 
   setFavoritesList() {
     favoritesList.value = _favoritesRepo.getFavoriteShows();
@@ -29,10 +34,7 @@ class FavoritesController extends GetxController {
     Either<FavoritesRepositoryFailure, Unit> removeFavoriteOption =
         await _favoritesRepo.deleteFavoriteShow(showId: showId);
 
-    removeFavoriteOption.fold(
-        (l) => print("FAILED FAVORITE REMOVED"),
-        (_) => (_) async {
-              await setFavoritesList();
-            });
+    removeFavoriteOption.fold((l) => print("FAILED FAVORITE REMOVED"),
+        (_) async => await setFavoritesList());
   }
 }

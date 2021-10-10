@@ -8,9 +8,7 @@ import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 class FavoritesScreen extends StatelessWidget {
   FavoritesController favoritesController =
       Get.put(getIt<FavoritesController>());
-  FavoritesScreen({Key? key}) : super(key: key) {
-    favoritesController.setFavoritesList();
-  }
+  FavoritesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
