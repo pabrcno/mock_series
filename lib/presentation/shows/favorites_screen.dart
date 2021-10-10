@@ -5,6 +5,7 @@ import 'package:mock_series/injection.dart';
 import 'package:mock_series/presentation/shows/widgets/remove_favorite_tile.dart';
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 
+// ignore: must_be_immutable
 class FavoritesScreen extends StatelessWidget {
   FavoritesController favoritesController =
       Get.put(getIt<FavoritesController>());

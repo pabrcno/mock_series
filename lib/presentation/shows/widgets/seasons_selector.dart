@@ -6,6 +6,7 @@ import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/domain/shows/models/season.dart';
 import 'package:mock_series/injection.dart';
 
+// ignore: must_be_immutable
 class SeasonsSelector extends StatelessWidget {
   ShowsController showsController = Get.put(getIt<ShowsController>());
   SeasonsSelector({Key? key}) : super(key: key);

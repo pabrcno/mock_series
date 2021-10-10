@@ -66,7 +66,7 @@ class EpisodeScreen extends StatelessWidget {
                       "SUMARY",
                       style: TextStyle(fontSize: 18),
                     ),
-                    Html(data: episode.summary, style: {
+                    Html(data: episode.summary ?? "", style: {
                       "p": Style(
                           fontSize: const FontSize(18),
                           lineHeight: const LineHeight(1.5)),

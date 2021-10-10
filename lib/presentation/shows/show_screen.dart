@@ -115,7 +115,7 @@ class ShowScreen extends StatelessWidget {
                             "SUMARY",
                             style: TextStyle(fontSize: 18),
                           ),
-                          Html(data: show.summary, style: {
+                          Html(data: show.summary ?? "", style: {
                             "p": Style(
                                 fontSize: const FontSize(17),
                                 lineHeight: const LineHeight(1.5)),

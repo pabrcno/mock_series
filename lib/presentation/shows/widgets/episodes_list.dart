@@ -5,6 +5,7 @@ import 'package:mock_series/domain/shows/models/episode.dart';
 import 'package:mock_series/injection.dart';
 import 'package:mock_series/presentation/shows/widgets/episode_tile.dart';
 
+// ignore: must_be_immutable
 class EpisodesList extends StatelessWidget {
   ShowsController showsController = Get.put(getIt<ShowsController>());
   EpisodesList({Key? key}) : super(key: key);
