@@ -45,12 +45,11 @@ class ShowPresentation extends StatelessWidget {
                         ? const Center(child: CircularProgressIndicator())
                         : Container(),
                     show.image != null
-                        ? Hero(
-                            tag: "${show.id}_pic",
-                            child: Image.network(
-                              show.image!.original!,
-                              semanticLabel: show.name,
-                            ))
+                        ? Image.network(
+                            show.image!.original!,
+                            semanticLabel: show.name,
+                            cacheWidth: 350,
+                          )
                         : Text(show.name!),
                   ])))),
           InkWell(

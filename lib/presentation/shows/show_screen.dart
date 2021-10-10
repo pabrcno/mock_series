@@ -46,12 +46,10 @@ class ShowScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width - 40,
                       child: show.image != null
                           ? InkWell(
-                              child: Hero(
-                                  tag: "${show.id}_pic",
-                                  child: Image.network(
-                                    show.image!.original!,
-                                    semanticLabel: show.name,
-                                  )))
+                              child: Image.network(
+                              show.image!.original!,
+                              semanticLabel: show.name,
+                            ))
                           : Text(show.name!),
                     ),
                     const SizedBox(

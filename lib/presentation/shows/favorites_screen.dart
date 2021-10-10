@@ -15,14 +15,7 @@ class FavoritesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: const Text("Mock Series"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            onPressed: () {},
-            color: Colors.red,
-          )
-        ],
+        title: const Text("Favorites"),
       ),
       body: Container(
           decoration: BoxDecoration(
@@ -33,25 +26,20 @@ class FavoritesScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Stack(
-              children: <Widget>[
-                Center(
-                    child: favoritesController.favoritesList.isEmpty
-                        ? const Text("You don't have any favorites yet 💔",
-                            style: TextStyle(fontSize: 24))
-                        : SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: SingleChildScrollView(
-                                child: Column(children: [
-                              ...favoritesController.favoritesList
-                                  .map((show) => ShowPresentation(show: show))
-                                  .toList(),
-                            ])),
-                          ))
-              ],
-            ),
-          )),
+              padding: const EdgeInsets.all(10),
+              child: Center(
+                  child: favoritesController.favoritesList.isEmpty
+                      ? const Text("You don't have any favorites yet 💔",
+                          style: TextStyle(fontSize: 24))
+                      : SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: SingleChildScrollView(
+                              child: Column(children: [
+                            ...favoritesController.favoritesList
+                                .map((show) => ShowPresentation(show: show))
+                                .toList()
+                          ])),
+                        )))),
     );
   }
 }
