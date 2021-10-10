@@ -7,20 +7,19 @@ import 'package:mock_series/injection.dart';
 class RemoveFavoriteTile extends StatelessWidget {
   final double width = 285;
   final Show show;
-
-  const RemoveFavoriteTile({
+  FavoritesController favoritesController =
+      Get.put(getIt<FavoritesController>());
+  RemoveFavoriteTile({
     Key? key,
     required this.show,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    FavoritesController favoritesController =
-        Get.put(getIt<FavoritesController>());
     return InkWell(
       //add to favorites
-      onTap: () {
-        favoritesController.deleteFavorite(showId: show.id);
+      onTap: () async {
+        await favoritesController.deleteFavorite(showId: show.id);
       },
       child: Container(
         width: width + 1,

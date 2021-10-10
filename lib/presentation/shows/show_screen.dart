@@ -124,8 +124,8 @@ class ShowScreen extends StatelessWidget {
                               child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
+                                  children: [
+                                    const Text(
                                       "Episodes",
                                       style: TextStyle(fontSize: 18),
                                     ),

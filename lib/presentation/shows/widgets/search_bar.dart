@@ -7,11 +7,11 @@ import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 import 'package:mock_series/presentation/shows/widgets/search_tile.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+  ShowsController showsController = Get.put(getIt<ShowsController>());
+  SearchBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ShowsController showsController = Get.put(getIt<ShowsController>());
     return Obx(() {
       return Padding(
         padding: const EdgeInsets.only(top: 50, left: 12, right: 12),
@@ -103,7 +103,7 @@ class OpenSearchBar extends StatelessWidget {
       openColor: Theme.of(context).backgroundColor,
       transitionType: transitionType,
       openBuilder: (BuildContext context, VoidCallback _) {
-        return const SearchBar();
+        return SearchBar();
       },
       tappable: false,
       closedBuilder: closedBuilder,

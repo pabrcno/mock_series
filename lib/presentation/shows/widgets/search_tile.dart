@@ -13,7 +13,6 @@ class SearchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ShowsController showsController = Get.put(getIt<ShowsController>());
     return InkWell(
       onTap: () async {
         await Get.to(() => ShowScreen(key: Key(show.name!), show: show),

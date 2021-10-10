@@ -8,12 +8,12 @@ import 'package:mock_series/domain/shows/models/show.dart';
 @injectable
 class FavoritesController extends GetxController {
   final IFavoritesRepositoryFacade _favoritesRepo;
-  List<Show> favoritesList = <Show>[].obs;
+  RxList<Show> favoritesList = <Show>[].obs;
 
   FavoritesController(this._favoritesRepo);
 
   setFavoritesList() {
-    favoritesList = _favoritesRepo.getFavoriteShows();
+    favoritesList.value = _favoritesRepo.getFavoriteShows();
   }
 
   addFavorite({required Show show}) async {

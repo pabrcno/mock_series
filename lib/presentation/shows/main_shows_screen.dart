@@ -26,7 +26,7 @@ class MainShowsScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.favorite),
             onPressed: () {
-              Get.to(() => const FavoritesScreen());
+              Get.to(() => FavoritesScreen());
             },
             color: Colors.red,
           )

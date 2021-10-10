@@ -7,11 +7,11 @@ import 'package:mock_series/domain/shows/models/season.dart';
 import 'package:mock_series/injection.dart';
 
 class SeasonsSelector extends StatelessWidget {
-  const SeasonsSelector({Key? key}) : super(key: key);
+  ShowsController showsController = Get.put(getIt<ShowsController>());
+  SeasonsSelector({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ShowsController showsController = Get.put(getIt<ShowsController>());
     return Obx(() => SizedBox(
             child: Row(children: <Widget>[
           const Text(

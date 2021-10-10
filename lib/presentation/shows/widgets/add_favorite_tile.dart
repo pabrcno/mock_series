@@ -7,16 +7,15 @@ import 'package:mock_series/injection.dart';
 class AddFavoriteTile extends StatelessWidget {
   final double width = 285;
   final Show show;
-
-  const AddFavoriteTile({
+  FavoritesController favoritesController =
+      Get.put(getIt<FavoritesController>());
+  AddFavoriteTile({
     Key? key,
     required this.show,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    FavoritesController favoritesController =
-        Get.put(getIt<FavoritesController>());
     return InkWell(
       //add to favorites
       onTap: () {
