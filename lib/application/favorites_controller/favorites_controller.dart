@@ -4,6 +4,21 @@ import 'package:injectable/injectable.dart';
 import 'package:mock_series/domain/favorites_repository/favorites_repository_failure.dart';
 import 'package:mock_series/domain/favorites_repository/i_favorites_repository_facade.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
+import 'package:flutter/material.dart';
+
+showSnackBar(
+        {required String title,
+        required String message,
+        bool success = true}) =>
+    Get.showSnackbar(
+      GetBar(
+        title: title,
+        message: message,
+        backgroundColor: success ? Colors.pink[200]! : Colors.red,
+        isDismissible: true,
+        duration: const Duration(seconds: 2),
+      ),
+    );
 
 @injectable
 class FavoritesController extends GetxController {
@@ -25,8 +40,17 @@ class FavoritesController extends GetxController {
     Either<FavoritesRepositoryFailure, Unit> addFavoriteOption =
         await _favoritesRepo.writeFavoriteShow(show: show);
 
-    addFavoriteOption.fold((l) => print("FAILED FAVORITE ADDED"), (_) async {
+    addFavoriteOption.fold(
+        (l) => showSnackBar(
+            title: "Error adding favorite",
+            success: false,
+            message: l.map(
+                serverError: (_) => "serverError",
+                unexpected: (_) => "unexpected",
+                insufficientPermission: (_) => "insufficientPermission",
+                unableToUpdate: (_) => "unableToUpdate")), (_) async {
       await setFavoritesList();
+      showSnackBar(title: "Favorite Added!", message: "❤️");
     });
   }
 
@@ -34,7 +58,15 @@ class FavoritesController extends GetxController {
     Either<FavoritesRepositoryFailure, Unit> removeFavoriteOption =
         await _favoritesRepo.deleteFavoriteShow(showId: showId);
 
-    removeFavoriteOption.fold((l) => print("FAILED FAVORITE REMOVED"),
+    removeFavoriteOption.fold(
+        (l) => showSnackBar(
+            title: "Error removing favorite",
+            success: false,
+            message: l.map(
+                serverError: (_) => "serverError",
+                unexpected: (_) => "unexpected",
+                insufficientPermission: (_) => "insufficientPermission",
+                unableToUpdate: (_) => "unableToUpdate")),
         (_) async => await setFavoritesList());
   }
 }
