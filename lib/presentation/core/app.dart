@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         brightness: Brightness.dark,
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        }),
         inputDecorationTheme: const InputDecorationTheme(
             floatingLabelStyle: TextStyle(color: Colors.white, fontSize: 20),
             border:

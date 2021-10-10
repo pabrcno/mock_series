@@ -30,7 +30,7 @@ class FavoritesScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: Obx(() => Center(
               child: favoritesController.favoritesList.isEmpty
-                  ? const Text("You don't have any favorites yet 💔",
+                  ? const Text("You don't have any favorites 💔",
                       style: TextStyle(fontSize: 24))
                   : SizedBox(
                       width: MediaQuery.of(context).size.width,
