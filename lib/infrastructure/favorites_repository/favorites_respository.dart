@@ -66,7 +66,6 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
   Future<Either<FavoritesRepositoryFailure, Unit>> deleteFavoriteShow(
       {required int showId}) async {
     try {
-      await _intializeRepository();
       var favorites = _favoritesRepo.read<Map<String, dynamic>>(_repoName);
 
       if (favorites!.containsKey("$showId")) {
