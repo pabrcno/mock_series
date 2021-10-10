@@ -6,20 +6,6 @@ import 'package:mock_series/domain/favorites_repository/i_favorites_repository_f
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:flutter/material.dart';
 
-showSnackBar(
-        {required String title,
-        required String message,
-        bool success = true}) =>
-    Get.showSnackbar(
-      GetBar(
-        title: title,
-        message: message,
-        backgroundColor: success ? Colors.pink[200]! : Colors.red,
-        isDismissible: true,
-        duration: const Duration(seconds: 2),
-      ),
-    );
-
 @injectable
 class FavoritesController extends GetxController {
   final IFavoritesRepositoryFacade _favoritesRepo;
@@ -70,3 +56,17 @@ class FavoritesController extends GetxController {
         (_) async => await setFavoritesList());
   }
 }
+
+showSnackBar(
+        {required String title,
+        required String message,
+        bool success = true}) =>
+    Get.showSnackbar(
+      GetBar(
+        title: title,
+        message: message,
+        backgroundColor: success ? Colors.pink[200]! : Colors.red,
+        isDismissible: true,
+        duration: const Duration(seconds: 2),
+      ),
+    );
