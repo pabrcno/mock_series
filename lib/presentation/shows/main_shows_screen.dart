@@ -1,13 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/presentation/shows/favorites_screen.dart';
 import 'package:mock_series/presentation/shows/widgets/infinite_scroll_shows.dart';
-
 import '../../injection.dart';
-
 import 'widgets/search_bar.dart';
 
 // ignore: must_be_immutable
@@ -24,11 +21,14 @@ class MainShowsScreen extends StatelessWidget {
         title: const Text("Mock Series"),
         actions: [
           IconButton(
-            icon: const Icon(Icons.favorite),
+            iconSize: 30,
+            icon: const Icon(
+              Icons.favorite,
+            ),
             onPressed: () {
               Get.to(() => FavoritesScreen());
             },
-            color: Colors.red,
+            color: Colors.pink[300],
           )
         ],
       ),
