@@ -4,19 +4,19 @@ import 'package:get/get.dart';
 
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/presentation/shows/favorites_screen.dart';
-import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
+
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 import '../../injection.dart';
 import 'widgets/add_favorite_tile.dart';
 import 'widgets/search_bar.dart';
 
+// ignore: must_be_immutable
 class MainShowsScreen extends StatelessWidget {
-  const MainShowsScreen({Key? key}) : super(key: key);
+  ShowsController showsController = Get.put(getIt<ShowsController>());
+  MainShowsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    ShowsController showsController = Get.put(getIt<ShowsController>());
-
-    showsController.initializeShowLists(showErrorSnackBar: showShowsSnackBar);
+    showsController.initializeShowLists();
 
     return Scaffold(
       appBar: AppBar(
@@ -54,8 +54,7 @@ class MainShowsScreen extends StatelessWidget {
                       if (showsController.memoryIndex.value >=
                           showsController.memoryShowList.length) {
                         showsController.addToPageIndex();
-                        showsController.getMainScreenShowsList(
-                            showErrorSnackBar: showShowsSnackBar);
+                        showsController.getMainScreenShowsList();
                       }
                       showsController.appendToLoadShowList();
                     }

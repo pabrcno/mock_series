@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/injection.dart';
-import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
+
 import 'package:mock_series/presentation/shows/widgets/search_tile.dart';
 
 // ignore: must_be_immutable
@@ -20,8 +20,8 @@ class SearchBar extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
-                  onChanged: (value) => showsController.searchShows(
-                      search: value, showErrorSnackBar: showShowsSnackBar),
+                  onChanged: (value) =>
+                      showsController.searchShows(search: value),
                   autofocus: true,
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).backgroundColor,

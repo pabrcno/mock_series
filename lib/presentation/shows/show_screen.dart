@@ -5,21 +5,20 @@ import 'package:mock_series/application/shows_controller/shows_controller.dart';
 
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/injection.dart';
-import 'package:mock_series/presentation/shows/utils/show_shows_snackbar.dart';
 
 import 'package:mock_series/presentation/shows/widgets/episodes_list.dart';
 import 'package:mock_series/presentation/shows/widgets/seasons_selector.dart';
 import 'package:mock_series/presentation/shows/widgets/show_premiere_genres_row.dart';
 
+// ignore: must_be_immutable
 class ShowScreen extends StatelessWidget {
+  ShowsController showsController = Get.put(getIt<ShowsController>());
   final Show show;
-  const ShowScreen({Key? key, required this.show}) : super(key: key);
+  ShowScreen({Key? key, required this.show}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ShowsController showsController = Get.put(getIt<ShowsController>());
-    showsController.setShowScreenInitialData(
-        show: show, showErrorSnackBar: showShowsSnackBar);
+    showsController.setShowScreenInitialData(show: show);
 
     return Scaffold(
         appBar: AppBar(

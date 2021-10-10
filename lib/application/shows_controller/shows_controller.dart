@@ -6,6 +6,7 @@ import 'package:mock_series/domain/shows/models/episode.dart';
 import 'package:mock_series/domain/shows/models/season.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/domain/shows/show_service_failure.dart';
+import 'package:flutter/material.dart';
 
 @injectable
 class ShowsController extends GetxController {
@@ -37,20 +38,20 @@ class ShowsController extends GetxController {
   ));
   final RxList<Episode> selectedSeasonEpisodes = <Episode>[].obs;
 
-  initializeShowLists({required showErrorSnackBar}) async {
-    await getMainScreenShowsList(showErrorSnackBar: showErrorSnackBar);
+  initializeShowLists() async {
+    await getMainScreenShowsList();
     appendToLoadShowList();
   }
 
   addToPageIndex() => showPageIndex++;
 
-  getMainScreenShowsList({required showErrorSnackBar}) async {
+  getMainScreenShowsList() async {
     isMainScreenLoading.value = true;
     Either<ShowServiceFailure, List<Show>> showListOption =
         await _showsService.getShowsPage(page: showPageIndex.value);
     isMainScreenLoading.value = false;
     showListOption.fold(
-        (f) => showErrorSnackBar(f),
+        (f) => showShowsSnackBar(f),
         // ignore: avoid_function_literals_in_foreach_calls
         (showsList) => showsList.forEach((element) {
               memoryShowList.add(element);
@@ -68,46 +69,42 @@ class ShowsController extends GetxController {
     memoryIndex.value = nextMemoryIndex;
   }
 
-  searchShows({required String search, required showErrorSnackBar}) async {
+  searchShows({required String search}) async {
     isSearchLoading.value = true;
     Either<ShowServiceFailure, List<Show>> showListOption =
         await _showsService.getShowsSearch(search: search);
     isSearchLoading.value = false;
     showListOption.fold(
-        (f) => showErrorSnackBar(f),
+        (f) => showShowsSnackBar(f),
         // ignore: avoid_function_literals_in_foreach_calls
         (showsList) => searchShowList.value = showsList);
   }
 
-  setShowScreenInitialData(
-      {required Show show, required showErrorSnackBar}) async {
+  setShowScreenInitialData({required Show show}) async {
     isShowScreenLoading.value = true;
-    await _setShowSeasons(
-        showId: show.id, showErrorSnackBar: showErrorSnackBar);
+    await _setShowSeasons(showId: show.id);
     for (Season season in showSeasonsList) {
-      await appendToEpisodesBySeasonMap(
-          seasonId: season.id!, showErrorSnackBar: showErrorSnackBar);
+      await appendToEpisodesBySeasonMap(seasonId: season.id!);
     }
     restartSelectedSeason();
     isShowScreenLoading.value = false;
   }
 
-  _setShowSeasons({required int showId, required showErrorSnackBar}) async {
+  _setShowSeasons({required int showId}) async {
     Either<ShowServiceFailure, List<Season>> seasonsListOption =
         await _showsService.getShowSeasons(showId: showId);
 
     seasonsListOption.fold(
-        (f) => showErrorSnackBar(f),
+        (f) => showShowsSnackBar(f),
         // ignore: avoid_function_literals_in_foreach_calls
         (seasonsList) => showSeasonsList.value = seasonsList);
   }
 
-  appendToEpisodesBySeasonMap(
-      {required int seasonId, required showErrorSnackBar}) async {
+  appendToEpisodesBySeasonMap({required int seasonId}) async {
     Either<ShowServiceFailure, List<Episode>> episodesListOption =
         await _showsService.getShowSeasonEpisodes(seasonId: seasonId);
 
-    episodesListOption.fold((f) => showErrorSnackBar(f),
+    episodesListOption.fold((f) => showShowsSnackBar(f),
         // ignore: avoid_function_literals_in_foreach_calls
         (episodesList) {
       episodesBySeasonMap[seasonId] = episodesList;
@@ -123,3 +120,20 @@ class ShowsController extends GetxController {
     selectedSeasonEpisodes.value = episodesBySeasonMap[selectedSeasonId]!;
   }
 }
+
+showShowsSnackBar(ShowServiceFailure f) => Get.showSnackbar(
+      GetBar(
+        title: f.map(
+          notFound: (_) => "Show not found 😕",
+          rateLimit: (_) => "Wait 10 seconds and try again!🕒",
+          serverError: (_) => "There was a server error 📠",
+          timeout: (_) => "Maybe your connection is broken 🌐",
+          unauthorized: (_) => "Unauthorized",
+          unexpectedError: (_) => "Something unexpected happened, try again!",
+        ),
+        message: "There was an error",
+        backgroundColor: Colors.red,
+        isDismissible: true,
+        duration: const Duration(seconds: 2),
+      ),
+    );

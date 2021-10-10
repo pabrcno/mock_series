@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: const Color.fromRGBO(43, 44, 67, 1),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MainShowsScreen(),
+      home: MainShowsScreen(),
     );
   }
 }
