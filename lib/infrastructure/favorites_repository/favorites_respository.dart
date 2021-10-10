@@ -11,13 +11,14 @@ import 'package:mock_series/domain/shows/models/show.dart';
 @LazySingleton(as: IFavoritesRepositoryFacade)
 class FavoritesRepository extends IFavoritesRepositoryFacade {
   final _favoritesRepo = GetStorage();
+  final String _repoName = "favorites";
 
   Future<Either<FavoritesRepositoryFailure, Unit>>
       _intializeRepository() async {
     try {
-      var favs = _favoritesRepo.read<Map<String, dynamic>>("favorites");
+      var favs = _favoritesRepo.read<Map<String, dynamic>>(_repoName);
       if (favs == null) {
-        await _favoritesRepo.write("favorites", <String, dynamic>{});
+        await _favoritesRepo.write(_repoName, <String, dynamic>{});
       }
       return (right(unit));
     } catch (e) {
@@ -30,13 +31,13 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
       {required Show show}) async {
     try {
       await _intializeRepository();
-      var favorites = _favoritesRepo.read<Map<String, dynamic>>("favorites");
+      var favorites = _favoritesRepo.read<Map<String, dynamic>>(_repoName);
       if (!favorites!.containsKey("${show.id}")) {
         favorites["${show.id}"] = json.encode(show.toJson());
       } else {
         throw Exception("Show already in favorites");
       }
-      await _favoritesRepo.write("favorites", favorites);
+      await _favoritesRepo.write(_repoName, favorites);
       return (right(unit));
     } on Exception catch (e) {
       if (e == Exception("Show already in favorites")) {
@@ -48,7 +49,7 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
 
   @override
   List<Show> getFavoriteShows() {
-    var favorites = _favoritesRepo.read<Map<String, dynamic>>("favorites");
+    var favorites = _favoritesRepo.read<Map<String, dynamic>>(_repoName);
     if (favorites != null) {
       List<Show> favoritesList = favorites.values
           .map((element) => Show.fromJson(Map.from(json.decode(element))))
@@ -66,14 +67,14 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
       {required int showId}) async {
     try {
       await _intializeRepository();
-      var favorites = _favoritesRepo.read<Map<String, dynamic>>("favorites");
+      var favorites = _favoritesRepo.read<Map<String, dynamic>>(_repoName);
 
       if (favorites!.containsKey("$showId")) {
         favorites.remove("$showId");
       } else {
         throw Exception("Show not in favorites");
       }
-      await _favoritesRepo.write("favorites", favorites);
+      await _favoritesRepo.write(_repoName, favorites);
       return (right(unit));
     } on Exception catch (e) {
       if (e == Exception("Show not in favorites")) {
