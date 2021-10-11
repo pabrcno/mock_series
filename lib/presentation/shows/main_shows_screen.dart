@@ -17,7 +17,7 @@ class MainShowsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: const Text("Mock Series"),
+        title: const Text("MockS"),
         actions: [
           IconButton(
             iconSize: 30,

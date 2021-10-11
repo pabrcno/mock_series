@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'MockS',
       theme: ThemeData(
         brightness: Brightness.dark,
         pageTransitionsTheme: const PageTransitionsTheme(builders: {
