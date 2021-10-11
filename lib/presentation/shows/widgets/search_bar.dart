@@ -5,6 +5,7 @@ import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/injection.dart';
 
 import 'package:mock_series/presentation/shows/widgets/search_tile.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 
 class SearchBar extends StatelessWidget {
   final ShowsController showsController = Get.put(getIt<ShowsController>());
@@ -19,8 +20,10 @@ class SearchBar extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
-                  onChanged: (value) =>
-                      showsController.searchShows(search: value),
+                  onChanged: (value) => EasyDebounce.debounce(
+                      'search_debouncer',
+                      const Duration(milliseconds: 500),
+                      () => showsController.searchShows(search: value)),
                   autofocus: true,
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).backgroundColor,

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mock_series/domain/favorites_repository/favorites_repository_failure.dart';
 import 'package:mock_series/domain/favorites_repository/i_favorites_repository_facade.dart';
-import 'package:mock_series/domain/shows/i_shows_service_facade.dart';
+
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:flutter/material.dart';
 

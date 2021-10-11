@@ -4,7 +4,7 @@ import 'package:mock_series/application/favorites_controller/favorites_controlle
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/injection.dart';
 import 'package:mock_series/presentation/shows/widgets/add_favorite_tile.dart';
-import 'package:mock_series/presentation/shows/widgets/remove_favorite_tile.dart';
+
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 
 class InfiniteScrollShows extends StatelessWidget {
@@ -36,7 +36,6 @@ class InfiniteScrollShows extends StatelessWidget {
             controller: _scrollController,
             child: Column(children: [
               ...showsController.toLoadShowList.map((show) {
-                print("RELOADED");
                 favoritesController.setIsShowFavorite(showId: show.id);
                 return ShowPresentation(
                   show: show,
