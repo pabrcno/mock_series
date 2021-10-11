@@ -19,18 +19,11 @@ class ShowScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     showsController.setShowScreenInitialData(show: show);
-
+    favoritesController.setIsShowFavorite(showId: show.id);
     return Scaffold(
         appBar: AppBar(
           title: Text(show.name!),
           backgroundColor: Theme.of(context).primaryColor,
-          actions: [
-            IconButton(
-                icon: const Icon(Icons.favorite),
-                onPressed: () {
-                  favoritesController.addFavorite(show: show);
-                })
-          ],
         ),
         body: Container(
           height: MediaQuery.of(context).size.height,

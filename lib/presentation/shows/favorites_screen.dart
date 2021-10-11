@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mock_series/application/favorites_controller/favorites_controller.dart';
 import 'package:mock_series/injection.dart';
-import 'package:mock_series/presentation/shows/widgets/remove_favorite_tile.dart';
+import 'package:mock_series/presentation/shows/widgets/add_favorite_tile.dart';
+
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 
 class FavoritesScreen extends StatelessWidget {
@@ -39,8 +40,8 @@ class FavoritesScreen extends StatelessWidget {
                             ...favoritesController.favoritesList
                                 .map((show) => ShowPresentation(
                                       show: show,
-                                      actionTile:
-                                          RemoveFavoriteTile(show: show),
+                                      actionTile: AddFavoriteTile(
+                                          show: show, isFavorite: true),
                                     ))
                                 .toList()
                           ],

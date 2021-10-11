@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mock_series/domain/favorites_repository/favorites_repository_failure.dart';
 import 'package:mock_series/domain/favorites_repository/i_favorites_repository_facade.dart';
+import 'package:mock_series/domain/shows/i_shows_service_facade.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 class FavoritesController extends GetxController {
   final IFavoritesRepositoryFacade _favoritesRepo;
   RxList<Show> favoritesList = <Show>[].obs;
-
+  RxBool isShowFavorite = false.obs;
   FavoritesController(this._favoritesRepo);
   @override
   onInit() {
@@ -36,6 +37,7 @@ class FavoritesController extends GetxController {
                 insufficientPermission: (_) => "insufficientPermission",
                 unableToUpdate: (_) => "unableToUpdate")), (_) async {
       await setFavoritesList();
+      setIsShowFavorite(showId: show.id);
       showSnackBar(title: "Favorite Added!", message: "❤️");
     });
   }
@@ -46,14 +48,27 @@ class FavoritesController extends GetxController {
 
     removeFavoriteOption.fold(
         (l) => showSnackBar(
-            title: "Error removing favorite",
+            title: "Error adding favorite",
             success: false,
             message: l.map(
                 serverError: (_) => "serverError",
                 unexpected: (_) => "unexpected",
                 insufficientPermission: (_) => "insufficientPermission",
-                unableToUpdate: (_) => "unableToUpdate")),
-        (_) async => await setFavoritesList());
+                unableToUpdate: (_) => "unableToUpdate")), (_) async {
+      await setFavoritesList();
+      setIsShowFavorite(showId: showId);
+      showSnackBar(title: "Favorite Removed!", message: "❤️");
+    });
+  }
+
+  setIsShowFavorite({required showId}) {
+    isShowFavorite.value = _favoritesRepo.isShowFavorite(showId: showId);
+  }
+
+  addRemoveFavoriteOption({required Show show}) {
+    isShowFavorite.value
+        ? addFavorite(show: show)
+        : deleteFavorite(showId: show.id);
   }
 }
 

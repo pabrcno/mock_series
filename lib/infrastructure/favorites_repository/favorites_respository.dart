@@ -82,4 +82,14 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
       return (left(const FavoritesRepositoryFailure.unexpected()));
     }
   }
+
+  @override
+  bool isShowFavorite({required int showId}) {
+    var favorites = _favoritesRepo.read<Map<String, dynamic>>(_repoName);
+    if (favorites!.containsKey("$showId")) {
+      return false;
+    }
+
+    return true;
+  }
 }

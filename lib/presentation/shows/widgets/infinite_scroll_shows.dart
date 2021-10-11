@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mock_series/application/favorites_controller/favorites_controller.dart';
 import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/injection.dart';
 import 'package:mock_series/presentation/shows/widgets/add_favorite_tile.dart';
+import 'package:mock_series/presentation/shows/widgets/remove_favorite_tile.dart';
 import 'package:mock_series/presentation/shows/widgets/show_presentation.dart';
 
 class InfiniteScrollShows extends StatelessWidget {
   final ShowsController showsController = Get.put(getIt<ShowsController>());
+  final FavoritesController favoritesController =
+      Get.put(getIt<FavoritesController>());
   InfiniteScrollShows({Key? key}) : super(key: key);
 
   @override
@@ -31,14 +35,16 @@ class InfiniteScrollShows extends StatelessWidget {
         child: SingleChildScrollView(
             controller: _scrollController,
             child: Column(children: [
-              ...showsController.toLoadShowList
-                  .map((show) => ShowPresentation(
-                        show: show,
-                        actionTile: AddFavoriteTile(
-                          show: show,
-                        ),
-                      ))
-                  .toList(),
+              ...showsController.toLoadShowList.map((show) {
+                print("RELOADED");
+                favoritesController.setIsShowFavorite(showId: show.id);
+                return ShowPresentation(
+                  show: show,
+                  actionTile: AddFavoriteTile(
+                      show: show,
+                      isFavorite: !favoritesController.isShowFavorite.value),
+                );
+              }).toList(),
               showsController.isMainScreenLoading.value
                   ? const Center(
                       child: CircularProgressIndicator(),
