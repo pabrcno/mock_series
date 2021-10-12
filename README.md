@@ -41,6 +41,12 @@ This is a mobile application for listing TV series, using the API provided by th
 website.
 You can find the API <a href="https://www.tvmaze.com/api">here.</a>
 
+### Architecture
+
+This diagram shows how the data flows through the app and how it manages inputs from external entities.
+
+<img src="./readme_assets/DDD-architecture.png" height=600/>
+
 ### Built With
 
 - [Flutter](https://flutter.dev/)
@@ -48,9 +54,6 @@ You can find the API <a href="https://www.tvmaze.com/api">here.</a>
 <!-- GETTING STARTED -->
 
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
