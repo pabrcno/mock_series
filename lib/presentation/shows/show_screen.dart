@@ -51,7 +51,6 @@ class ShowScreen extends StatelessWidget {
                           const Divider(
                             height: 1,
                           ),
-                          // ignore: prefer_const_constructors
                           EpisodesList()
                         ]))
                   ]),

@@ -28,8 +28,6 @@ class ShowsController extends GetxController {
   final RxMap<int, List<Episode>> episodesBySeasonMap =
       <int, List<Episode>>{}.obs;
 
-  ShowsController(this._showsService);
-
   final Rx<Season> selectedSeason = Rx(const Season(
     id: 0,
     name: '',
@@ -37,6 +35,8 @@ class ShowsController extends GetxController {
     url: '',
   ));
   final RxList<Episode> selectedSeasonEpisodes = <Episode>[].obs;
+
+  ShowsController(this._showsService);
 
   initializeShowLists() async {
     await getMainScreenShowsList();

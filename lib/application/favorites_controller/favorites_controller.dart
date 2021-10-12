@@ -57,7 +57,7 @@ class FavoritesController extends GetxController {
                 unableToUpdate: (_) => "unableToUpdate")), (_) async {
       await setFavoritesList();
       setIsShowFavorite(showId: showId);
-      showSnackBar(title: "Favorite Removed!", message: "❤️");
+      showSnackBar(title: "Favorite Removed!", message: ":(");
     });
   }
 
