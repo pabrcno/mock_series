@@ -86,8 +86,10 @@ class FavoritesRepository extends IFavoritesRepositoryFacade {
   @override
   bool isShowFavorite({required int showId}) {
     var favorites = _favoritesRepo.read<Map<String, dynamic>>(_repoName);
-    if (favorites!.containsKey("$showId")) {
-      return false;
+    if (favorites != null) {
+      if (favorites.containsKey("$showId")) {
+        return false;
+      }
     }
 
     return true;
