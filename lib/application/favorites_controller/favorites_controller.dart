@@ -74,15 +74,15 @@ class FavoritesController extends GetxController {
 }
 
 showSnackBar(
-        {required String title,
-        required String message,
-        bool success = true}) =>
-    Get.showSnackbar(
-      GetBar(
-        title: title,
-        message: message,
-        backgroundColor: success ? Colors.pink[200]! : Colors.red,
-        isDismissible: true,
-        duration: const Duration(seconds: 2),
-      ),
-    );
+    {required String title, required String message, bool success = true}) {
+  if (Get.isSnackbarOpen!) return;
+  return Get.showSnackbar(
+    GetBar(
+      title: title,
+      message: message,
+      backgroundColor: success ? Colors.pink[200]! : Colors.red,
+      isDismissible: true,
+      duration: const Duration(seconds: 2),
+    ),
+  );
+}
