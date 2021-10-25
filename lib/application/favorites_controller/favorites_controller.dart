@@ -12,6 +12,7 @@ class FavoritesController extends GetxController {
   final IFavoritesRepositoryFacade _favoritesRepo;
   RxList<Show> favoritesList = <Show>[].obs;
   RxBool isShowFavorite = false.obs;
+  RxMap<int, bool> isFavoriteIndex = <int, bool>{}.obs;
   FavoritesController(this._favoritesRepo);
   @override
   onInit() {
@@ -21,6 +22,9 @@ class FavoritesController extends GetxController {
 
   setFavoritesList() {
     favoritesList.value = _favoritesRepo.getFavoriteShows();
+    for (var element in favoritesList) {
+      isFavoriteIndex[element.id] = true;
+    }
   }
 
   addFavorite({required Show show}) async {
@@ -62,7 +66,7 @@ class FavoritesController extends GetxController {
   }
 
   setIsShowFavorite({required showId}) {
-    isShowFavorite.value = _favoritesRepo.isShowFavorite(showId: showId);
+    isFavoriteIndex[showId] = _favoritesRepo.isShowFavorite(showId: showId);
   }
 
   addRemoveFavoriteOption({required Show show}) {

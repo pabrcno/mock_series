@@ -41,7 +41,7 @@ class FavoritesScreen extends StatelessWidget {
                                 .map((show) => ShowPresentation(
                                       show: show,
                                       actionTile: AddFavoriteTile(
-                                          show: show, isFavorite: true),
+                                          show: show, isFavorite: false),
                                     ))
                                 .toList()
                           ],

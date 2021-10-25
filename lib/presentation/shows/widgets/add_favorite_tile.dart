@@ -22,7 +22,7 @@ class AddFavoriteTile extends StatelessWidget {
       //add to favorites
       onTap: () async {
         favoritesController.setIsShowFavorite(showId: show.id);
-        isFavorite
+        !isFavorite
             ? await favoritesController.deleteFavorite(showId: show.id)
             : await favoritesController.addFavorite(show: show);
         favoritesController.setIsShowFavorite(showId: show.id);
@@ -43,7 +43,7 @@ class AddFavoriteTile extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Icon(!isFavorite ? Icons.favorite : Icons.close,
+            Icon(isFavorite ? Icons.favorite : Icons.close,
                 color: Colors.white, size: 26),
           ],
         ),

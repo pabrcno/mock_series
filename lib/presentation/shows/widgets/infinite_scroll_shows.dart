@@ -16,42 +16,28 @@ class InfiniteScrollShows extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      ScrollController _scrollController = ScrollController();
-      _scrollController.addListener(() {
-        int reloadMargin = -800;
-        if (_scrollController.position.pixels >=
-            _scrollController.position.maxScrollExtent + reloadMargin) {
-          if (showsController.memoryIndex.value >=
-              showsController.memoryShowList.length) {
-            showsController.addToPageIndex();
-            showsController.getMainScreenShowsList();
-          }
-          showsController.appendToLoadShowList();
-        }
-      });
       return Center(
           child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(children: [
-              ...showsController.toLoadShowList.map((show) {
-                favoritesController.setIsShowFavorite(showId: show.id);
-                return ShowPresentation(
-                  show: show,
-                  actionTile: AddFavoriteTile(
-                      show: show,
-                      isFavorite: !favoritesController.isShowFavorite.value),
-                );
-              }).toList(),
-              showsController.isMainScreenLoading.value
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : const SizedBox(
-                      height: 1,
-                    )
-            ])),
+        child: ListView.builder(
+          itemCount: showsController.memoryShowList.length,
+          itemBuilder: (BuildContext context, int index) {
+            favoritesController.setIsShowFavorite(
+                showId: showsController.memoryShowList[index].id);
+            return ShowPresentation(
+                show: showsController.memoryShowList[index],
+                actionTile: Obx(
+                  () => AddFavoriteTile(
+                      show: showsController.memoryShowList[index],
+                      isFavorite: favoritesController.isFavoriteIndex[
+                                  showsController.memoryShowList[index].id] ==
+                              null
+                          ? false
+                          : favoritesController.isFavoriteIndex[
+                              showsController.memoryShowList[index].id]!),
+                ));
+          },
+        ),
       ));
     });
   }
