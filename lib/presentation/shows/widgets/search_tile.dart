@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mock_series/application/shows_controller/shows_controller.dart';
 
 import 'package:mock_series/domain/shows/models/show.dart';
+import 'package:mock_series/injection.dart';
 
 import '../show_screen.dart';
 
 class SearchTile extends StatelessWidget {
+  final ShowsController showsController = Get.put(getIt<ShowsController>());
   final Show show;
-  const SearchTile({Key? key, required this.show}) : super(key: key);
+  SearchTile({Key? key, required this.show}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
+        showsController.setShowScreenInitialData(show: show);
         await Get.to(() => ShowScreen(key: Key(show.name!), show: show),
             preventDuplicates: false);
       },

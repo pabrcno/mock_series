@@ -41,12 +41,11 @@ class AddFavoriteTile extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Obx(() => Icon(
-                favoritesController.getIsShowFavorite(showId: show.id)
-                    ? Icons.favorite
-                    : Icons.close,
-                color: Colors.white,
-                size: 26)),
+            Obx(() => Icon(Icons.favorite,
+                color: favoritesController.getIsShowFavorite(showId: show.id)
+                    ? Colors.white
+                    : Colors.red,
+                size: 30)),
           ],
         ),
       ),

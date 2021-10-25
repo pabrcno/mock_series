@@ -23,24 +23,23 @@ class ShowScreen extends StatelessWidget {
           title: Text(show.name!),
           backgroundColor: Theme.of(context).primaryColor,
           actions: [
-            Obx(() => IconButton(
-                  icon: Icon(
-                    Icons.favorite,
-                    size: 30,
-                    color:
-                        favoritesController.getIsShowFavorite(showId: show.id)
-                            ? Colors.grey
-                            : Colors.red,
-                  ),
-                  onPressed: () async {
-                    favoritesController.setIsShowFavorite(showId: show.id);
-                    !favoritesController.getIsShowFavorite(showId: show.id)
-                        ? await favoritesController.deleteFavorite(
-                            showId: show.id)
-                        : await favoritesController.addFavorite(show: show);
-                    favoritesController.setIsShowFavorite(showId: show.id);
-                  },
-                ))
+            IconButton(
+              icon: Icon(
+                Icons.favorite,
+                size: 30,
+                color: favoritesController.getIsShowFavorite(showId: show.id) ==
+                        true
+                    ? Colors.white
+                    : Colors.red,
+              ),
+              onPressed: () async {
+                favoritesController.setIsShowFavorite(showId: show.id);
+                !favoritesController.getIsShowFavorite(showId: show.id)
+                    ? await favoritesController.deleteFavorite(showId: show.id)
+                    : await favoritesController.addFavorite(show: show);
+                favoritesController.setIsShowFavorite(showId: show.id);
+              },
+            )
           ],
         ),
         body: Obx(() {
