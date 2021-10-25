@@ -22,6 +22,9 @@ class InfiniteScrollShows extends StatelessWidget {
         child: ListView.builder(
           itemCount: showsController.memoryShowList.length,
           itemBuilder: (BuildContext context, int index) {
+            if (index == showsController.memoryShowList.length - 50) {
+              showsController.addToShowsList();
+            }
             favoritesController.setIsShowFavorite(
                 showId: showsController.memoryShowList[index].id);
             return ShowPresentation(

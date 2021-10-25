@@ -16,11 +16,10 @@ class ShowsController extends GetxController {
   RxBool isSearchLoading = false.obs;
   RxBool isShowScreenLoading = false.obs;
 
-  RxInt showPageIndex = 1.obs;
+  RxInt showPageIndex = 0.obs;
   RxInt memoryIndex = 0.obs;
 
   final RxList<Show> memoryShowList = <Show>[].obs;
-  final RxList<Show> toLoadShowList = <Show>[].obs;
 
   final RxList<Show> searchShowList = <Show>[].obs;
 
@@ -39,14 +38,12 @@ class ShowsController extends GetxController {
   ShowsController(this._showsService);
 
   initializeShowLists() async {
-    await getMainScreenShowsList();
-    appendToLoadShowList();
+    await addToShowsList();
   }
 
-  addToPageIndex() => showPageIndex++;
-
-  getMainScreenShowsList() async {
+  addToShowsList() async {
     isMainScreenLoading.value = true;
+    showPageIndex++;
     Either<ShowServiceFailure, List<Show>> showListOption =
         await _showsService.getShowsPage(page: showPageIndex.value);
     isMainScreenLoading.value = false;
@@ -55,17 +52,6 @@ class ShowsController extends GetxController {
         memoryShowList.add(element);
       }
     });
-  }
-
-  appendToLoadShowList() {
-    const int loadPerCall = 16;
-    int nextMemoryIndex = loadPerCall + memoryIndex.value;
-    for (int i = memoryIndex.value;
-        i < nextMemoryIndex && i < memoryShowList.length;
-        i++) {
-      toLoadShowList.add(memoryShowList[i]);
-    }
-    memoryIndex.value = nextMemoryIndex;
   }
 
   searchShows({required String search}) async {
