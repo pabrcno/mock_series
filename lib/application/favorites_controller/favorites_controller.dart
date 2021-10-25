@@ -21,8 +21,8 @@ class FavoritesController extends GetxController {
 
   setFavoritesList() {
     favoritesList.value = _favoritesRepo.getFavoriteShows();
-    for (var element in favoritesList) {
-      isFavoriteIndex[element.id] = true;
+    for (var show in favoritesList) {
+      isFavoriteIndex[show.id] = _favoritesRepo.isShowFavorite(showId: show.id);
     }
   }
 
