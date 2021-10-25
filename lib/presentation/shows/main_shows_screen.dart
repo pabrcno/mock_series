@@ -12,8 +12,6 @@ class MainShowsScreen extends StatelessWidget {
   MainShowsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    showsController.initializeShowLists();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,

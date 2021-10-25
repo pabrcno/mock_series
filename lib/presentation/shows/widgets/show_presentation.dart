@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mock_series/application/shows_controller/shows_controller.dart';
 import 'package:mock_series/domain/shows/models/show.dart';
+import 'package:mock_series/injection.dart';
 import 'package:mock_series/presentation/shows/show_screen.dart';
 
 class ShowPresentation extends StatelessWidget {
+  final ShowsController showsController = Get.put(getIt<ShowsController>());
   final Show show;
   final Widget actionTile;
   static const double width = 285;
 
-  const ShowPresentation(
-      {Key? key, required this.show, required this.actionTile})
+  ShowPresentation({Key? key, required this.show, required this.actionTile})
       : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class ShowPresentation extends StatelessWidget {
               child: InkWell(
                 //image
                 onTap: () async {
+                  showsController.setShowScreenInitialData(show: show);
                   Get.to(() => ShowScreen(key: Key(show.name!), show: show));
                 },
                 child: show.image != null

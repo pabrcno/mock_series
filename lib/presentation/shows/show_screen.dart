@@ -22,37 +22,59 @@ class ShowScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(show.name!),
           backgroundColor: Theme.of(context).primaryColor,
+          actions: [
+            Obx(() => IconButton(
+                  icon: Icon(
+                    Icons.favorite,
+                    size: 30,
+                    color:
+                        favoritesController.getIsShowFavorite(showId: show.id)
+                            ? Colors.grey
+                            : Colors.red,
+                  ),
+                  onPressed: () async {
+                    favoritesController.setIsShowFavorite(showId: show.id);
+                    !favoritesController.getIsShowFavorite(showId: show.id)
+                        ? await favoritesController.deleteFavorite(
+                            showId: show.id)
+                        : await favoritesController.addFavorite(show: show);
+                    favoritesController.setIsShowFavorite(showId: show.id);
+                  },
+                ))
+          ],
         ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage("assets/images/show_background.png"))),
-          padding: const EdgeInsets.all(20),
-          child: Obx(() => showsController.isShowScreenLoading.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : SingleChildScrollView(
-                  child: Column(children: [
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(children: [
-                          ShowPoster(show: show),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ShowInfoSection(show: show),
-                          SeasonsSelector(),
-                          const Divider(
-                            height: 1,
-                          ),
-                          EpisodesList()
-                        ]))
-                  ]),
-                )),
-        ));
+        body: Obx(() {
+          return Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor,
+                image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/images/show_background.png"))),
+            padding: const EdgeInsets.all(20),
+            child: showsController.isShowScreenLoading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SingleChildScrollView(
+                    child: Column(children: [
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(children: [
+                            ShowPoster(show: show),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            ShowInfoSection(show: show),
+                            SeasonsSelector(),
+                            const Divider(
+                              height: 1,
+                            ),
+                            EpisodesList()
+                          ]))
+                    ]),
+                  ),
+          );
+        }));
   }
 }

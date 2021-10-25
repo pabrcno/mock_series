@@ -35,7 +35,9 @@ class ShowsController extends GetxController {
   ));
   final RxList<Episode> selectedSeasonEpisodes = <Episode>[].obs;
 
-  ShowsController(this._showsService);
+  ShowsController(this._showsService) {
+    initializeShowLists();
+  }
 
   initializeShowLists() async {
     await addToShowsList();
