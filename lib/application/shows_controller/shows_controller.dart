@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 class ShowsController extends GetxController {
   final IShowsServiceFacade _showsService;
 
-  RxBool isMainScreenLoading = false.obs;
+  RxBool isMainScreenLoading = true.obs;
   RxBool isSearchLoading = false.obs;
   RxBool isShowScreenLoading = false.obs;
 
@@ -44,7 +44,6 @@ class ShowsController extends GetxController {
   }
 
   addToShowsList() async {
-    isMainScreenLoading.value = true;
     showPageIndex++;
     Either<ShowServiceFailure, List<Show>> showListOption =
         await _showsService.getShowsPage(page: showPageIndex.value);

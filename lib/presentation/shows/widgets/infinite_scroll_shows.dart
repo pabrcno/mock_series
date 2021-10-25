@@ -19,22 +19,26 @@ class InfiniteScrollShows extends StatelessWidget {
       return Center(
           child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: ListView.builder(
-          itemCount: showsController.memoryShowList.length,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == showsController.memoryShowList.length - 50) {
-              showsController.addToShowsList();
-            }
-            favoritesController.setIsShowFavorite(
-                showId: showsController.memoryShowList[index].id);
-            return ShowPresentation(
-              show: showsController.memoryShowList[index],
-              actionTile: AddFavoriteTile(
-                show: showsController.memoryShowList[index],
+        child: showsController.isMainScreenLoading.value
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemCount: showsController.memoryShowList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == showsController.memoryShowList.length - 50) {
+                    showsController.addToShowsList();
+                  }
+                  favoritesController.setIsShowFavorite(
+                      showId: showsController.memoryShowList[index].id);
+                  return ShowPresentation(
+                    show: showsController.memoryShowList[index],
+                    actionTile: AddFavoriteTile(
+                      show: showsController.memoryShowList[index],
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
       ));
     });
   }
