@@ -5,7 +5,6 @@ import 'package:mock_series/domain/shows/models/show.dart';
 import 'package:mock_series/injection.dart';
 
 class AddFavoriteTile extends StatelessWidget {
-  final bool isFavorite;
   final double width = 285;
   final Show show;
   final FavoritesController favoritesController =
@@ -13,7 +12,6 @@ class AddFavoriteTile extends StatelessWidget {
   AddFavoriteTile({
     Key? key,
     required this.show,
-    required this.isFavorite,
   }) : super(key: key);
 
   @override
@@ -22,7 +20,7 @@ class AddFavoriteTile extends StatelessWidget {
       //add to favorites
       onTap: () async {
         favoritesController.setIsShowFavorite(showId: show.id);
-        !isFavorite
+        !favoritesController.getIsShowFavorite(showId: show.id)
             ? await favoritesController.deleteFavorite(showId: show.id)
             : await favoritesController.addFavorite(show: show);
         favoritesController.setIsShowFavorite(showId: show.id);
@@ -43,8 +41,12 @@ class AddFavoriteTile extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Icon(isFavorite ? Icons.favorite : Icons.close,
-                color: Colors.white, size: 26),
+            Obx(() => Icon(
+                favoritesController.getIsShowFavorite(showId: show.id)
+                    ? Icons.favorite
+                    : Icons.close,
+                color: Colors.white,
+                size: 26)),
           ],
         ),
       ),

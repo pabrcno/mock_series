@@ -28,17 +28,11 @@ class InfiniteScrollShows extends StatelessWidget {
             favoritesController.setIsShowFavorite(
                 showId: showsController.memoryShowList[index].id);
             return ShowPresentation(
+              show: showsController.memoryShowList[index],
+              actionTile: AddFavoriteTile(
                 show: showsController.memoryShowList[index],
-                actionTile: Obx(
-                  () => AddFavoriteTile(
-                      show: showsController.memoryShowList[index],
-                      isFavorite: favoritesController.isFavoriteIndex[
-                                  showsController.memoryShowList[index].id] ==
-                              null
-                          ? false
-                          : favoritesController.isFavoriteIndex[
-                              showsController.memoryShowList[index].id]!),
-                ));
+              ),
+            );
           },
         ),
       ));

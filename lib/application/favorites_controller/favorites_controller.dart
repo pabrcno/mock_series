@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 class FavoritesController extends GetxController {
   final IFavoritesRepositoryFacade _favoritesRepo;
   RxList<Show> favoritesList = <Show>[].obs;
-  RxBool isShowFavorite = false.obs;
   RxMap<int, bool> isFavoriteIndex = <int, bool>{}.obs;
   FavoritesController(this._favoritesRepo);
   @override
@@ -52,7 +51,7 @@ class FavoritesController extends GetxController {
 
     removeFavoriteOption.fold(
         (l) => showSnackBar(
-            title: "Error adding favorite",
+            title: "Error removing favorite",
             success: false,
             message: l.map(
                 serverError: (_) => "serverError",
@@ -69,10 +68,8 @@ class FavoritesController extends GetxController {
     isFavoriteIndex[showId] = _favoritesRepo.isShowFavorite(showId: showId);
   }
 
-  addRemoveFavoriteOption({required Show show}) {
-    isShowFavorite.value
-        ? addFavorite(show: show)
-        : deleteFavorite(showId: show.id);
+  getIsShowFavorite({required showId}) {
+    return isFavoriteIndex[showId] ?? false;
   }
 }
 

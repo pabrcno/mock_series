@@ -18,8 +18,6 @@ class ShowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    showsController.setShowScreenInitialData(show: show);
-    favoritesController.setIsShowFavorite(showId: show.id);
     return Scaffold(
         appBar: AppBar(
           title: Text(show.name!),
