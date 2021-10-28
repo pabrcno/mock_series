@@ -33,11 +33,7 @@ class ShowScreen extends StatelessWidget {
                     : Colors.red,
               ),
               onPressed: () async {
-                favoritesController.setIsShowFavorite(showId: show.id);
-                !favoritesController.getIsShowFavorite(showId: show.id)
-                    ? await favoritesController.deleteFavorite(showId: show.id)
-                    : await favoritesController.addFavorite(show: show);
-                favoritesController.setIsShowFavorite(showId: show.id);
+                await favoritesController.toggleFavorite(show: show);
               },
             )
           ],

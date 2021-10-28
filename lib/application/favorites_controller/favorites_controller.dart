@@ -71,6 +71,14 @@ class FavoritesController extends GetxController {
   getIsShowFavorite({required showId}) {
     return isFavoriteIndex[showId] ?? false;
   }
+
+  toggleFavorite({required Show show}) async {
+    setIsShowFavorite(showId: show.id);
+    !getIsShowFavorite(showId: show.id)
+        ? await deleteFavorite(showId: show.id)
+        : await addFavorite(show: show);
+    setIsShowFavorite(showId: show.id);
+  }
 }
 
 showSnackBar(
