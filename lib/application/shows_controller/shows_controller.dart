@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 @injectable
 class ShowsController extends GetxController {
   final IShowsServiceFacade _showsService;
-
   RxBool isMainScreenLoading = true.obs;
   RxBool isSearchLoading = false.obs;
   RxBool isShowScreenLoading = false.obs;
