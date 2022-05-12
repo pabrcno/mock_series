@@ -7,7 +7,7 @@
   <h1 align="center">MockSeries</h1>
 
   <p align="center">
-    A Flutter code challenge for <a href="https://jobsity.com/"> Jobsity</a>
+   A series demo app
    
 </div>
 
